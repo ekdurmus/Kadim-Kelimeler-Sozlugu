@@ -1,0 +1,389 @@
+0	mutemadiyen	Mütemadiyen	Zarf	Aralıksız, durmaksızın, sürekli olarak.
+1	mutekabiliyetci	Mütekabiliyetçi	Sıfat	Karşılıklılık ilkesini savunan ve uygulayan.
+2	mutemayizane	Mütemayizane	Zarf	Başkalarından farklı ve üstün bir nitelik sergileyerek.
+3	muteselsil-sorumluluk	Müteselsil sorumluluk	Terim / İsim Tamlaması	Zincirleme olarak birbirine bağlı borç veya sorumluluk durumu.
+4	mutecavizane	Mütecavizane	Zarf	Saldırgan bir tavırla, taarruz amacıyla.
+5	i-pe-sapa-gelmez	İpe sapa gelmez	Deyim	Mantıksız, saçma ve tutarsız (söz veya davranış).
+6	kanina-girmek	Kanına girmek	Deyim	Birini kötü bir yola düşürmek veya haksız yere ölümüne sebep olmak.
+7	laf-ebeligi-yapmak	Laf ebeliği yapmak	Deyim	Boş sözlerle karşı tarafı laf kalabalığına boğmak.
+8	misket-gibi-yuvarlanmak	Misket gibi yuvarlanmak	Deyim	Hızlı ve kolayca bir süreçten geçmek (mecazi olarak işlerin akışı).
+9	nuh-diyor-peygamber-demiyor	Nuh diyor peygamber demiyor	Deyim	Hiçbir şekilde ikna edilemeyen, ısrarından vazgeçmeyen kimse.
+10	ab-i-hayat	Ab-ı hayat	Deyim / Tabir	Ölümsüzlük suyu, hayat suyu.
+11	ehlivukuf	Ehlivukuf	Kadim Kelime	Bilirkişi, anlayan, işin ehli olan kimse.
+12	mutefekkir	Mütefekkir	Sözcük	Düşünür, fikir adamı.
+13	mustesna	Müstesna	Sözcük	İstisnai, benzerlerinden farklı, seçkin.
+14	feraset	Feraset	Kadim Kelime	Seziş, anlayış, zeka, olayları önceden sezme yeteneği.
+15	kenz	Kenz	Kadim Kelime	Hazine, gizli hazine, kıymetli şey.
+16	nigar	Nigar	Kadim Kelime	Resim, güzel yüzlü sevgili.
+17	dilhun	Dilhun	Kadim Kelime	Yüreği kan ağlayan, çok üzgün.
+18	serapa	Serapa	Kadim Kelime	Baştan başa, tamamen.
+19	meftun	Meftun	Kadim Kelime	Tutkun, aşık, hayran.
+20	girift	Girift	Kadim Kelime	Karmaşık, çözülmesi zor, karışık.
+21	zuppe	Züppe	Kadim Kelime	Görgü kurallarını yanlış veya aşırı uygulayan, yapmacık kimse.
+22	mumtaz	Mümtaz	Sözcük	Seçkin, imtiyazlı, üstün.
+23	mukellef	Mükellef	Sözcük	Eksiksiz, zengin, donanımlı (örn. mükellef sofra).
+24	serhad	Serhad	Kadim Kelime	Sınır boyu, uç beyliklerinin bulunduğu yer.
+25	nazenin	Nazenin	Kadim Kelime	Çok nazlı, incitmekten korkulan, zarif.
+26	mecalim	Mecalim	Kadim Kelime	Güçler, takatlar, dermanlar.
+27	gubar	Gubar	Kadim Kelime	Toz, toprak.
+28	nev-javan	Nev-javan	Terkip	Genç, taze delikanlı.
+29	ahenk	Ahenk	Kadim Kelime	Uyum, düzen.
+30	zaman-i-kadim	Zaman-ı kadim	Deyim / Tabir	Eski zamanlar, kadim devirler.
+31	misvak	Misvak	Kadim Kelime	Diş temizliğinde kullanılan bitkisel çubuk (metaforik olarak temizlik/öz anlamında da kullanılır).
+32	cihanpesent	Cihanpesent	Kadim Kelime	Cihanın beğendiği, dünya çapında güzel.
+33	sule	Şule	Kadim Kelime	Alev, parlaklık.
+34	zinet	Zînet	Kadim Kelime	Süs, ziynet eşyası.
+35	zulfuyar	Zülfüyâr	Kadim Kelime	Sevgilinin zülüflü saçı (hassas noktalar, dokunulmaması gereken yerler anlamında kullanılır).
+36	efsunkar	Efsunkâr	Kadim Kelime	Büyülü, büyüleyici.
+37	ruzigar	Rûzigâr	Kadim Kelime	Zaman, devir, rüzgar.
+38	safderun	Safderun	Kadim Kelime	Saf, kolayca aldatılabilen, temiz kalpli.
+39	tevekkul	Tevekkül	Kadim Kelime	Allah'a güvenme, kadere razı olma.
+40	vuslat	Vuslat	Kadim Kelime	Kavuşma, sevgiliye kavuşma anı.
+41	hicran	Hicran	Kadim Kelime	Ayrılık acısı, hasret.
+42	i-clal	İclal	Kadim Kelime	Saygı göstergesinde bulunma, ululama.
+43	i-llet	İllet	Kadim Kelime	Hastalık, sebep, kusur.
+44	kevser	Kevser	Kadim Kelime	Cennetteki bir nehir, bol nimet.
+45	mecnun	Mecnun	Kadim Kelime	Deli, çılgınca aşık.
+46	mehtap	Mehtap	Kadim Kelime	Ay ışığı.
+47	mihnet	Mihnet	Kadim Kelime	Sıkıntı, eziyet, çile.
+48	muvaffak	Muvaffak	Sözcük	Başarılı.
+49	mucevher	Mücevher	Sözcük	Değerli taş.
+50	nasihat	Nasihat	Kadim Kelime	Öğüt.
+51	nefis	Nefis	Kadim Kelime	Öz, can, hoş, güzel.
+52	nihayet	Nihayet	Kadim Kelime	Son, sonuç.
+53	pak	Pak	Kadim Kelime	Temiz, lekesiz.
+54	pervane	Pervane	Kadim Kelime	Işığın etrafında dönen kelebek, aşık.
+55	rehber	Rehber	Kadim Kelime	Kılavuz, yol gösterici.
+56	sema	Sema	Kadim Kelime	Gökyüzü, gök.
+57	semender	Semender	Kadim Kelime	Ateşte yaşayabildiğine inanılan efsanevi hayvan.
+58	sefkat	Şefkat	Kadim Kelime	Acıma ve sevgi hissi.
+59	siir	Şiir	Kadim Kelime	Duygu ve hayal uyandıran söz sanatı.
+60	tahammul	Tahammül	Kadim Kelime	Dayanma, katlanma gücü.
+61	tekamul	Tekamül	Kadim Kelime	Olgunlaşma, evrim, gelişme.
+62	temenni	Temenni	Kadim Kelime	Dilek, arzu.
+63	ulfet	Ülfet	Kadim Kelime	Dostluk, alışkanlık, samimiyet.
+64	umit	Ümit	Kadim Kelime	Umut.
+65	vefa	Vefa	Kadim Kelime	Sözünde durma, sevgide sebat etme.
+66	vicdan	Vicdan	Kadim Kelime	İnsanın ahlaki değer yargısı.
+67	yadigar	Yadigar	Kadim Kelime	Hatıra, anı.
+68	zarafet	Zarafet	Kadim Kelime	İncelik, naziklik.
+69	zenginlik	Zenginlik	Kadim Kelime	Varlık, bolluk.
+70	aba-vakti-aba-yaba-vakti-yaba-alinir	Aba vakti aba, yaba vakti yaba alınır	Atasözü	Her şeyin vaktinde ve zamanında tedariki yapılmalıdır.
+71	ak-akce-kara-gun-icindir	Ak akçe kara gün içindir	Atasözü	Kazanılan paralar zor günler için biriktirilmelidir.
+72	damlaya-damlaya-gol-olur	Damlaya damlaya göl olur	Atasözü	Küçük şeyler birikerek büyük varlıklar oluşturur.
+73	el-elin-esegini-turku-cagirarak-arar	El elin eşeğini türkü çağırarak arar	Atasözü	Başkalarının derdi insanı kendi derdi kadar üzmez, eğlence sanılır.
+74	gorunen-koy-kilavuz-istemez	Görünen köy kılavuz istemez	Atasözü	Açık olan, ortada duran durumlar için delil arama gereği yoktur.
+75	lafla-peynir-gemisi-yurumez	Lafla peynir gemisi yürümez	Atasözü	Sadece söz vererek, çalışmadan iş yapılmaz.
+76	sakla-samani-gelir-zamani	Sakla samanı gelir zamanı	Atasözü	Görünüşte önemsiz görülen şeyler bir gün mutlaka lazımdır.
+77	sutten-agzi-yanan-ayrani-ufleyerek-icer	Sütten ağzı yanan ayranı üfleyerek içer	Atasözü	Bir kez zarara uğrayan kişi, benzer durumlarda aşırı temkinli davranır.
+78	zahmetsiz-rahmet-olmaz	Zahmetsiz rahmet olmaz	Atasözü	Emek verilmeden başarı veya kazanç elde edilemez.
+79	agac-yasken-egilir	Ağaç yaşken eğilir	Atasözü	Çocuklar küçük yaşta kolay eğitilir, yönlendirilir.
+80	aba-altindan-sopa-gostermek	Aba altından sopa göstermek	Deyim	Açıkça korkutmayarak, üstü kapalı gözdağı vermek.
+81	etekleri-zil-calmak	Etekleri zil çalmak	Deyim	Çok sevinmek, neşelenmek.
+82	goz-boyamak	Göz boyamak	Deyim	Başkasını aldatmak, kandırmak, gerçekleri gizlemek.
+83	i-pe-un-sermek	İpe un sermek	Deyim	İşi yokuşa sürmek, bahaneler üreterek işten kaçınmak.
+84	kili-kirk-yarmak	Kılı kırk yarmak	Deyim	Bir işte çok titiz davranmak, en ince detayına kadar incelemek.
+85	pireyi-deve-yapmak	Pireyi deve yapmak	Deyim	Önemsiz bir olayı büyütmek, abartmak.
+86	pot-kirmak	Pot kırmak	Deyim	Yersiz veya düşüncesizce bir söz söylemek, gaf yapmak.
+87	cam-devirmek	Çam devirmek	Deyim	Farkında olmadan karşısındakini kıracak ya da zor durumda bırakacak söz söylemek.
+88	sinek-avlamak	Sinek avlamak	Deyim	İşsiz kalmak, iş yapamamak, müşteri olmamak.
+89	horoz-olur-gozu-coplukte-kalir	Horoz ölür, gözü çöplükte kalır	Deyim	İnsan alışkanlıklarından ve zaaflarından asla vazgeçemez.
+90	muazzam	Muazzam	Sözcük	Çok büyük, devasa, hayranlık uyandıran.
+91	mustakim	Müstakim	Sözcük	Doğru yoldan ayrılmayan, dürüst.
+92	naciz	Nâçiz	Kadim Kelime	Değersiz, önemsiz (alçakgönüllülük ifadesi).
+93	mutekamil	Mütekamil	Sözcük	Olgunlaşmış, gelişmiş.
+94	mutereddit	Mütereddit	Sözcük	Kararsız, tereddüt eden.
+95	munhasiran	Münhasıran	Sözcük	Yalnızca, sadece.
+96	mutehassis	Mütehassıs	Sözcük	Uzman.
+97	muteselsil	Müteselsil	Sözcük	Zincirleme, birbirine bağlı olarak sürüp giden.
+98	musamaha	Müsamaha	Sözcük	Hoşgörü.
+99	muskulpesent	Müşkülpesent	Sözcük	Zor beğenen, titiz.
+100	halis-muhlis	Halis muhlis	Deyim / Tabir	Katıksız, saf, hakiki.
+101	mecazi	Mecazî	Kadim Kelime	Gerçek anlamı dışında kullanılan.
+102	muessir	Müessir	Sözcük	Etkileyen, tesirli.
+103	muktedir	Muktedir	Sözcük	Gücü yeten, iktidar sahibi.
+104	muasir	Muasır	Sözcük	Çağdaş.
+105	mulhem	Mülhem	Sözcük	İlham olunmuş, içe doğmuş.
+106	mulayim	Mülayim	Sözcük	Yumuşak huylu.
+107	mustakil	Müstakil	Sözcük	Bağımsız, ayrı, kendine ait.
+108	muessese	Müessese	Sözcük	Kurum, kuruluş.
+109	mukrim	Mükrim	Sözcük	İkram etmeyi seven, konuksever.
+110	muskul	Müşkül	Sözcük	Güç, çetin, zorluk.
+111	mutereddit-2	Mütereddit	Sözcük	Kararsız, çekingen, tereddütlü.
+112	mumtaz-2	Mümtaz	Sözcük	Seçkin, ayrıcalıklı, üstün nitelikli.
+113	muesses	Müesses	Sözcük	Kurulmuş, temeli atılmış.
+114	mueccel	Müeccel	Sözcük	Ertelenmiş, vadesi sonraya bırakılmış.
+115	mustesna-2	Müstesna	Sözcük	İstisnai, benzersiz, eşsiz.
+116	musfik	Müşfik	Sözcük	Şefkatli, merhametli, koruyup kollayan.
+117	munzevi	Münzevî	Sözcük	Toplumdan uzaklaşarak tek başına yaşayan, köşesine çekilmiş.
+118	mutereddi	Mütereddî	Sözcük	Alçalmış, bozulmuş, yozlaşmış.
+119	muessif	Müessif	Sözcük	Üzücü, teessüf gerektiren.
+120	mukafat	Mükâfat	Sözcük	Ödül, karşılık.
+121	mukrim-2	Mükrim	Sözcük	İkram sever, konuk ağırlamaktan hoşlanan.
+122	muteessir	Müteessir	Sözcük	Üzülmüş, duygulanmış, müteessir olan.
+123	mutefekkir-2	Mütefekkir	Sözcük	Düşünür, fikir ve felsefe insanı.
+124	muftehir	Müftehir	Sözcük	Övünen, gurur duyan.
+125	musamahakar	Müsamahakar	Sözcük	Hoşgörülü, anlayışlı.
+126	muntesip	Müntesip	Sözcük	Bir yere, bir mesleğe veya akıma bağlı olan, mensup.
+127	mustakbel	Müstakbel	Sözcük	Gelecek, ileriki zaman.
+128	mubeccel	Mübeccel	Sözcük	Yüceltilmiş, saygıdeğer, ululanmış.
+129	mudafaa	Müdafaa	Sözcük	Savunma, koruma.
+130	muteredditane	Müteredditâne	Sözcük	Kararsız bir şekilde, tereddütle.
+131	muheyya	Müheyya	Sözcük	Hazır, hazırlanmış.
+132	mulevves	Mülevves	Sözcük	Kirli, pisletilmiş, bulaşık.
+133	mutekait	Mütekait	Sözcük	Emekli.
+134	munhal	Münhal	Sözcük	Boş (kadro, memuriyet vb.).
+135	muellif	Müellif	Sözcük	Yazar, eser sahibi.
+136	mutemadiyen-2	Mütemadiyen	Sözcük	Aralıksız, sürekli olarak, durmaksızın.
+137	mubasir	Mübaşir	Sözcük	Duruşma salonunda düzeni sağlayan adliye görevlisi.
+138	mutereddet	Mütereddet	Sözcük	Tereddüt eden, kararsız kalan.
+139	mucerret	Mücerret	Sözcük	Soyut, yalnız, tek başına.
+140	mukim	Mukim	Sözcük	Bir yerde oturan, ikamet eden.
+141	muktebes	Muktebes	Sözcük	Alıntı yapılmış, iktibas edilmiş.
+142	muktedir-2	Muktedir	Sözcük	Gücü yeten, iş başarmaya muktedir olan.
+143	mukavemet	Mukavemet	Sözcük	Direnç, karşı koyma gücü.
+144	mukaddeme	Mukaddeme	Sözcük	Önsöz, giriş bölümü.
+145	mukaddes	Mukaddes	Sözcük	Kutsal, mübarek.
+146	mukteza	Mukteza	Sözcük	Gereken, icap eden, lüzumlu şey.
+147	mukayese	Mukayese	Sözcük	Karşılaştırma, kıyaslama.
+148	mukadderat	Mukadderat	Sözcük	Yazgı, kader, önceden belirlenmiş durumlar.
+149	mukabil	Mukabil	Sözcük	Karşılık olarak, mukabilinde.
+150	muazzam-2	Muazzam	Sözcük	Devasa, görkemli, çok büyük.
+151	muasir-2	Muasır	Sözcük	Çağdaş, asrın insanı, modern.
+152	muavenet	Muavenet	Sözcük	Yardımlaşma, imdat etme.
+153	muhafazakar	Muhafazakâr	Sözcük	Geleneklerine, değerlerine bağlı kalan, tutucu.
+154	muallak	Muallak	Sözcük	Askıda kalmış, belirsiz, karara bağlanmamış.
+155	muhatap	Muhatap	Sözcük	Söz söylenen kimse, karşılıklı konuşan kişi.
+156	muhtelif	Muhtelif	Sözcük	Çeşitli, türlü, farklı.
+157	muhteva	Muhteva	Sözcük	İçerik, bir eserin veya yazının özü.
+158	muazzip	Muazzip	Sözcük	Eziyet çeken, azap içinde olan.
+159	muhayyile	Muhayyile	Sözcük	Hayal gücü, tasavvur yeteneği.
+160	muhakeme	Muhakeme	Sözcük	Akıl yürütme, değerlendirme, yargılama.
+161	muhalif	Muhalif	Sözcük	Aykırı düşen, karşı çıkan.
+162	muallim	Muallim	Sözcük	Öğretmen, eğitmen.
+163	muhabbet	Muhabbet	Sözcük	Sevgi, dostça sohbet, tatlı dil.
+164	muhacir	Muhacir	Sözcük	Göçmen, yurdunu bırakıp başka yere göç eden.
+165	muzaffer	Muzaffer	Sözcük	Zafer kazanmış, başarı elde etmiş.
+166	mustear	Müstear	Sözcük	Takma (isim, ad).
+167	muteredditce	Müteredditçe	Sözcük	Şüpheci ve kararsız bir tavırla.
+168	mursit	Mürşit	Sözcük	Doğru yolu gösteren kılavuz, rehber, uyarıcı.
+169	mecara	Mecâra	Kadim Kelime	Macir, akış yeri, macera alanı.
+170	ak-koyun-kara-koyun-gecidinde-belli-olur	Ak koyun kara koyun geçidinde belli olur	Atasözü	Bir kişinin veya durumun gerçek değeri, kritik bir iş veya sınav sırasında ortaya çıkar.
+171	dost-ile-ye-ic-alisveris-etme	Dost ile ye, iç, alışveriş etme	Atasözü	Yakın arkadaşlarla ticari ilişkilerde bulunmak anlaşmazlıklara ve dostluğun bozulmasına yol açabilir.
+172	hamama-giren-terler	Hamama giren terler	Atasözü	Zor veya zahmetli bir işe girişen kimse, o işin sıkıntılarına katlanmak zorundadır.
+173	i-ti-an-comagi-hazirla	İti an çomağı hazırla	Atasözü	Hakkında konuşulan kötü veya kavgacı bir kimse aniden ortaya çıkıverir.
+174	mum-dibine-isik-vermez	Mum dibine ışık vermez	Atasözü	Bir kimse başkalarına çok faydalı olabilir ama kendi yakınlarına veya çevresine bu yardımı ulaştıramaz.
+175	ne-dograrsan-asina-o-cikar-kasigina	Ne doğrarsan aşına, o çıkar kaşığına	Atasözü	İnsan dünyada ne kadar emek ve çaba harcarsa, karşılığında ancak o kadarını elde eder.
+176	ruzgar-eken-firtina-bicer	Rüzgâr eken fırtına biçer	Atasözü	Kötülük yapan, etrafına huzursuzluk saçan kimse katbekat büyük bir bela ile karşılaşır.
+177	samanlikta-igne-aramak	Samanlıkta iğne aramak	Atasözü / Deyim	Son derece zor veya bulunuşu imkansız bir şeyi aramaya çalışmak.
+178	tasima-su-ile-degirmen-donmez	Taşıma su ile değirmen dönmez	Atasözü	Sınırlı ve dışarıdan gelen geçici imkânlarla büyük veya sürekli bir iş yürütülemez.
+179	yalancinin-mumu-yatsiya-kadar-yanar	Yalancının mumu yatsıya kadar yanar	Atasözü	Söylenen yalanlar bir süre sonra mutlaka ortaya çıkar, gizli kalmaz.
+180	abayi-yakmak	Abayı yakmak	Deyim	Birine aşık olmak, tutulmak.
+181	bindigi-dali-kesmek	Bindiği dalı kesmek	Deyim	Kendi çıkarına zarar verecek, kendi konumunu tehlikeye atacak bir davranışta bulunmak.
+182	cam-devirmek-2	Çam devirmek	Deyim	Farkında olmadan pot kırmak, gaf yapmak, karşısındakini kıracak söz sarf etmek.
+183	dereyi-gormeden-pacalari-sivamak	Dereyi görmeden paçaları sıvamak	Deyim	Ortada henüz kesin bir durum veya sonuç yokken erkenden hazırlığa veya telaşa girişmek.
+184	etekleri-tutusmak	Etekleri tutuşmak	Deyim	Büyük bir telaşa ve korkuya kapılmak, ne yapacağını bilememek.
+185	firildak-gibi-donmek	Fırıldak gibi dönmek	Deyim	Çıkarına göre sürekli fikir ve yön değiştirmek, güvenilmez olmak.
+186	gozden-dusmek	Gözden düşmek	Deyim	Eskiden gösterilen ilgi ve sevgiyi kaybetmek, gözü dışarıda olmak.
+187	haddini-bilmek	Haddini bilmek	Deyim	Durumunu, yetkisini ve nerede durması gerektiğini bilmek.
+188	i-pe-un-sermek-2	İpe un sermek	Deyim	İşi yokuşa sürmek, bahaneler bularak sorumluluktan kaçınmak.
+189	kas-yapayim-derken-goz-cikarmak	Kaş yapayım derken göz çıkarmak	Deyim	Bir işi düzeltmeye çalışırken durumu daha da kötüleştirmek.
+190	kulak-kabartmak	Kulak kabartmak	Deyim	Çaktırmadan, dikkatle söylenilenleri dinlemek.
+191	laf-ebesi-olmak	Laf ebesi olmak	Deyim	Boş ve gereksiz laflarla çok konuşmak, geveze olmak.
+192	midemi-bulandirmak	Midemi bulandırmak	Deyim	Tiksinti uyandırmak, şüphe ve huzursuzluk yaratmak.
+193	nallari-dikmek	Nalları dikmek	Deyim	Ölmek, hayatını kaydetmek.
+194	ocagi-sonmek	Ocağı sönmek	Deyim	Bir yuvanın, ailenin dağılması, varlığını yitirmesi.
+195	pabuc-birakmamak	Pabuç bırakmamak	Deyim	Tehditlere boyun eğmemek, korkmamak, ödün vermemek.
+196	puskullu-bela	Püsküllü bela	Deyim	Baştan savulamayan, uğraştırıcı ve sıkıntılı durum.
+197	rapor-vermek	Rapor vermek	Deyim	Durum hakkında resmî bilgi sunmak.
+198	samur-kurk-olmak	Samur kürk olmak	Deyim	Çok değerli ve itibarlı bir konuma gelmek.
+199	seytanin-bacagini-kirmak	Şeytanın bacağını kırmak	Deyim	Uzun süredir süregelen kötü şansı veya başarısızlığı yenmek.
+200	tabana-kuvvet	Tabana kuvvet	Deyim	Yaya olarak yürümeye devam etmek, aceleyle uzaklaşmak.
+201	tuz-biber-ektirmek	Tuz biber ektirmek	Deyim	Var olan kötü bir durumu daha da çekilmez, acı verici hale getirmek.
+202	ucu-kapali	Ucu kapalı	Deyim	Kesin olmayan, netliğe kavuşmamış durum.
+203	ustune-tuy-dikmek	Üstüne tüy dikmek	Deyim	Yapılan bir hatanın ardından durumu daha da berbat edecek bir hamle yapmak.
+204	vur-patlasin-cal-oynasin	Vur patlasın çal oynasın	Deyim	Gönlünce eğlenmek, hayatın tadını çıkarmak, hiçbir şeyi takmamak.
+205	ya-tutarsa-diye-dusunmek	Ya tutarsa diye düşünmek	Deyim	Riskli ve gerçekleşme ihtimali düşük bir işe umut bağlanarak adım atmak.
+206	zeytinyagi-gibi-suya-cikmak	Zeytinyağı gibi suya çıkmak	Deyim	Suçlu olduğu halde her seferinde üste çıkmayı başarmak.
+207	zevzeklik-etmek	Zevzeklik etmek	Deyim	Yersiz, saçma ve boş sözler söylemek.
+208	zincire-vurulmak	Zincire vurulmak	Deyim	Özgürlüğü kısıtlanmak, esir alınmak.
+209	zurnanin-zirt-dedigi-yer	Zurnanın zırt dediği yer	Deyim	İşin en kritik, en zayıf veya en sıkıntılı noktası.
+210	mutesanit	Mütesanit	Sözcük	Dayanışma içinde olan, birbirine sıkıca bağlı, omuz omuza veren.
+211	mutecaviz	Mütecaviz	Sözcük	Saldırgan, tecavüz eden, taarruzda bulunan.
+212	mutemayil	Mütemayil	Sözcük	Eğilimi olan, meyilli, bir tarafa yönelen.
+213	mutekabilen	Mütekabilen	Sözcük	Karşılıklı olarak, mukabelede bulunarak.
+214	muteredditane-2	Müteredditâne	Sözcük	Kararsız bir tutumla, çekingenlik göstererek.
+215	muessiriyet	Müessiriyet	Sözcük	Tesirlilik, etkileyicilik gücü.
+216	mutemmim	Mütemmim	Sözcük	Tamamlayıcı, bütünleyici parça.
+217	munhasiran-2	Münhasıran	Sözcük	Yalnızca ve sadece bir şeye mahsus olmak üzere.
+218	mutereddi-2	Mütereddi	Sözcük	Ahlaken veya maddeten yozlaşmış, düşkünleşmiş.
+219	mutekamilen	Mütekamilen	Sözcük	Tamamlanmış, olgunlaşmış bir biçimde.
+220	muskulpesentlik	Müşkülpesentlik	Sözcük	Zor beğenme durumu, aşırı titizlik.
+221	musarunileyh	Müşarünileyh	Sözcük	Kendisine işaret edilen, adı geçen, anılan (saygın kişi).
+222	munasebetci	Münasebetçi	Sözcük	İlişki kurmayı seven, vesile arayan.
+223	mucessem	Mücessem	Sözcük	Somutlaşmış, cisimleşmiş, gözle görülebilir hâle gelmiş.
+224	mustahdem	Müstahdem	Sözcük	Hizmetli, kapıcı, hizmet eden görevli.
+225	mustahak	Müstahak	Sözcük	Hak edilmiş, layık olunmuş (genellikle olumsuz durumlar için).
+226	mustakar	Müstakar	Sözcük	Kararlı, durağan, yerleşik ve sarsılmaz.
+227	mustefit	Müstefit	Sözcük	Faydalanan, yararlanan, karlı çıkan.
+228	mustehzi	Müstehzi	Sözcük	Alaycı, alay eden, istihza dolu.
+229	mustesnalik	Müstesnalık	Sözcük	Benzersizlik, istisnai olma durumu.
+230	musterek	Müşterek	Sözcük	Ortak, birlikte paylaşılan.
+231	musfikane	Müşfikane	Sözcük	Şefkatle, merhametli ve koruyucu bir tavırla.
+232	muesseselesme	Müesseseleşme	Sözcük	Kurumsal bir kimlik ve yapı kazanma süreci.
+233	munhal-kadro	Münhal kadro	Deyim / Tabir	Boşta bulunan, atama bekleyen memuriyet yeri.
+234	muellifhane	Müellifhane	Sözcük	Yazara yakışır tarzda, edebi biçimde.
+235	mutemadiyat	Mütemadiyat	Sözcük	Süreklilik, aralıksız devam etme hali.
+236	mubaseret	Mübaşeret	Sözcük	Bir işe girişme, başlama.
+237	mucerretlik	Mücerretlik	Sözcük	Soyutluk durumu.
+238	mukimlik	Mukimlik	Sözcük	Bir yerde ikamet etme hali, yerleşiklik.
+239	muktebesat	Muktebesat	Sözcük	Başka kaynaklardan yapılan alıntılar, iktibaslar.
+240	mukavemetli	Mukavemetli	Sözcük	Dirençli, dayanıklı yapıya sahip.
+241	mukaddemat	Mukaddemat	Sözcük	Giriş kısımları, ön hazırlıklar ve mukaddimeler.
+242	mukaddesat	Mukaddesat	Sözcük	Uğruna can verilecek kutsal değerler, inançlar.
+243	muktezat	Muktezat	Sözcük	Gerekler, icaplar, lüzumlu hususlar.
+244	mukayeseli	Mukayeseli	Sözcük	Kıyaslamalı, karşılaştırmalı tetkik.
+245	mukadderatci	Mukadderatçı	Sözcük	Kaderci, her şeyi yazgıya bağlayan düşünce yapısı.
+246	mukabilinde	Mukabilinde	Sözcük	Karşılığı olarak, o niyetle.
+247	muazzamlik	Muazzamlık	Sözcük	Görkemlilik, devasa olma vasfı.
+248	muasirlasma	Muasırlaşma	Sözcük	Çağdaşlaşma, asrın seviyesine ulaşma çabası.
+249	muavenetci	Muavenetçi	Sözcük	Yardımlaşmayı ilke edinmiş kimse.
+250	muhafazakarlik	Muhafazakarlık	Sözcük	Geleneksel değerleri koruma eğilimi.
+251	muallaklik	Muallaklık	Sözcük	Belirsizlik, karara bağlanmama durumu.
+252	muhataplik	Muhataplık	Sözcük	Sorumluluk taşıyan veya karşı taraf olma durumu.
+253	muhteviyat	Muhteviyat	Sözcük	Bir şeyin içindekilerin tamamı, ayrıntılı içerik.
+254	muazziplik	Muazziplik	Sözcük	Eziyet çekme, sıkıntı içinde kıvranma.
+255	muhayyileli	Muhayyileli	Sözcük	Güçlü bir hayal dünyasına sahip olan.
+256	muhakemeli	Muhakemeli	Sözcük	Sağlıklı akıl yürütebilen, mantıklı değerlendirme yapan.
+257	muhalefet-etmek	Muhalefet etmek	Deyim / Tabir	Alınan kararlara veya görüşlere karşı çıkmak.
+258	muallimlik	Muallimlik	Sözcük	Öğretmenlik mesleği, rehberlik görevi.
+259	muhabbetname	Muhabbetname	Sözcük	Sevgi ve dostluk dolu mektup.
+260	muhacirlik	Muhacirlik	Sözcük	Yersiz yurtsuz kalma, göçmenlik durumu.
+261	muzafferiyet	Muzafferiyet	Sözcük	Zaferle sonuçlanma, başarı kazanma.
+262	mustear-isim	Müstear isim	Deyim / Tabir	Gerçek adı gizlemek için kullanılan takma ad, mahlas.
+263	mursitlik	Mürşitlik	Sözcük	Doğru yolu gösteren kılavuzluk, aydınlatıcılık.
+264	mecradan-cikmak	Mecradan çıkmak	Deyim / Tabir	Normal akışını kaybetmek, kontrolden çıkmak.
+265	akli-basinda-olmak	Aklı başında olmak	Deyim / Tabir	Sağlıklı düşünebilmek, olgun ve dengeli hareket etmek.
+266	akla-karayi-secmek	Akla karayı seçmek	Deyim / Tabir	Bir işi başarmak için çok büyük zorluklar ve zahmetler çekmek.
+267	alin-teri	Alın teri	Deyim / Tabir	Emek verilerek, dürüstçe kazanılan kazanç.
+268	ates-puskurmek	Ateş püskürmek	Deyim / Tabir	Çok büyük bir öfkeyle sert sözler söylemek, köpürmek.
+269	bagrina-tas-basmak	Bağrına taş basmak	Deyim / Tabir	Büyük bir acıya, üzüntüye sabretmeye çalışmak.
+270	camur-atmak	Çamur atmak	Deyim / Tabir	Birine haksız yere suçlamada bulunmak, leke sürmeye çalışmak.
+271	cile-doldurmak	Çile doldurmak	Deyim / Tabir	Uzun süren zorluklu, sıkıntılı bir dönemi tamamlamak.
+272	dag-basini-duman-almak	Dağ başını duman almak	Deyim / Tabir	Zorlukların, sorunların artması ve işlerin sarpa sarması.
+273	dis-bilemek	Diş bilemek	Deyim / Tabir	Birine karşı gizli bir kin beslemek, intikam arzusu taşımak.
+274	etekleri-zil-calmak-2	Etekleri zil çalmak	Deyim / Tabir	Beklenmedik bir sevinçle taşkın bir neşe duymak.
+275	gozden-gecirmek	Gözden geçirmek	Deyim / Tabir	Bir metni, durumu veya eşyayı dikkatlice inceleyip kontrol etmek.
+276	gozunu-kirpmadan	Gözünü kırpmadan	Deyim / Tabir	Hiç tereddüt etmeden, korkusuzca ve tehlikeyi göze alarak.
+277	hakkindan-gelmek	Hakkından gelmek	Deyim / Tabir	Bir işin üstesinden başarıyla gelmek ya da birine hakkını bildirmek.
+278	i-cine-kurt-dusmek	İçine kurt düşmek	Deyim / Tabir	Bir şey hakkında şüpheye, endişeye kapılmak.
+279	kas-goz-isaret-etmek	Kaş göz işaret etmek	Deyim / Tabir	Gizli anlaşmak veya bir konuda sessizce uyarıda bulunmak.
+280	kili-kirk-yarmak-2	Kılı kırk yarmak	Deyim / Tabir	Detaylar üzerinde aşırı derecede titizlenmek.
+281	lafi-agzina-tikayincaya-kadar	Lafı ağzına tıkayıncaya kadar	Deyim / Tabir	Konuşmasına fırsat vermemek, susturmak.
+282	merakini-gidermek	Merakını gidermek	Deyim / Tabir	Bilinmeyen bir şeyi öğrenerek kafadaki soru işaretlerini silmek.
+283	nefes-aldirmamak	Nefes aldırmamak	Deyim / Tabir	Birine sürekli baskı yapmak, rahat bırakmamak.
+284	pabucu-dama-atilmak	Pabucu dama atılmak	Deyim / Tabir	Eskisi kadar ilgi görmemek, gözden düşmek, kıymeti azalmak.
+285	ruzgara-gore-yon-degistirmek	Rüzgara göre yön değiştirmek	Deyim / Tabir	Çıkarcı bir tavırla güç odaklarının peşinden gitmek.
+286	saman-alevi-gibi-parlamak	Saman alevi gibi parlamak	Deyim / Tabir	Birdenbire çok öfkelenmek ama bu öfkenin çabucak sönmesi.
+287	simsekleri-uzerine-cekmek	Şimşekleri üzerine çekmek	Deyim / Tabir	Eleştirilerin ve tepkilerin odağında kalmak.
+288	tabanlari-yaglamak	Tabanları yağlamak	Deyim / Tabir	Tehlikeli bir durumdan ya da oradan hızla uzaklaşmak.
+289	tuzlukla-kosmak	Tuzlukla koşmak	Deyim / Tabir	Her söylenen şeye hemen inanmak veya başkalarına körü körüne uymak.
+290	ununu-eleyip-elegini-asmak	Ununu eleyip eleğini asmak	Deyim / Tabir	Hayatındaki asıl büyük işleri tamamlayıp köşesine çekilmek.
+291	uzerine-dusmek	Üzerine düşmek	Deyim / Tabir	Bir konuyla veya kişiyle çok yakından ve titizlikle ilgilenmek.
+292	vakit-oldurmek	Vakit öldürmek	Deyim / Tabir	Boş işlerle zaman harcamak, zamanı değerlendirememek.
+293	yorgan-gitti-kavga-bitti	Yorgan gitti, kavga bitti	Deyim / Tabir	Ortadaki temel anlaşmazlık kaynağı ortadan kalktığı için çekişmenin sona ermesi.
+294	zihni-bulandirmak	Zihni bulandırmak	Deyim / Tabir	Aklını karıştırmak, doğru düşünmeyi engellemek.
+295	akil-para-ile-satilmaz	Akıl para ile satılmaz	Atasözü	Herkes kendi aklını kullanmak zorundadır, akıl dışarıdan satın alınamaz.
+296	birlikte-kuvvet-dogar	Birlikte kuvvet doğar	Atasözü	İnsanlar güçlerini birleştirirse en zor işleri bile başarabilirler.
+297	carsambanin-gelisi-persembeden-bellidir	Çarşambanın gelişi perşembeden bellidir	Atasözü	Bir olayın nereye varacağı, önceden gösterdiği belirtilerden anlaşılır.
+298	dost-kara-gunde-belli-olur	Dost kara günde belli olur	Atasözü	Gerçek dost, insan sıkıntıdayken ve yardıma muhtaçken yanındaandır.
+299	erken-kalkan-yol-alir	Erken kalkan yol alır	Atasözü	İşine erken başlayan ve zamanında davranan kimse başarılı olur.
+300	gulu-seven-dikenine-katlanir	Gülü seven dikenine katlanır	Atasözü	Sevilen bir şeyin veya kişinin getirdiği sıkıntılara sabredilir.
+301	hazira-dag-dayanmaz	Hazıra dağ dayanmaz	Atasözü	Çalışmadan, sadece var olanı harcayarak yaşayanların serveti tükenir.
+302	i-yilik-eden-iyilik-bulur	İyilik eden iyilik bulur	Atasözü	Karşılıksız yapılan iyilikler bir gün mutlaka sahibine döner.
+303	korle-yatan-sasi-kalkar	Körle yatan şaşı kalkar	Atasözü	Kötü huylu veya bilgisiz insanlarla arkadaşlık edenler onların kötü alışkanlıklarını kaparlar.
+304	ne-ekersen-onu-bicersin	Ne ekersen onu biçersin	Atasözü	Dünyada nasıl davranırsanız, karşılığında da aynısını görürsünüz.
+305	sakinandan-gozu-cop-batar	Sakınandan gözü çöp batar	Atasözü	Bir şeyden aşırı derecede sakınan ve korkan kişinin başına tam da o korktuğu gelir.
+306	tas-yerinde-agirdir	Taş yerinde ağırdır	Atasözü	Her insan kendi memleketinde veya kendi yerinde saygı görür ve değerlidir.
+307	ac-koyun-kurt-gibi-saldirir	Aç koyun kurt gibi saldırır	Atasözü	Uzun süre mahrumiyet yaşayan kimse fırsat bulduğunda hırsla saldırır.
+308	dertsiz-bas-hamamda-bellidir	Dertsiz baş hamamda bellidir	Atasözü	İnsanın derdi tasası olmadığını huzurlu halinden anlamak mümkündür.
+309	goz-gordugunu-ister	Göz gördüğünü ister	Atasözü	İnsan hoşuna giden, gördüğü ve beğendiği şeylere sahip olmak ister.
+310	afitap	Afitap	Kadim Kelime	Güneş gibi parlayan, çok güzel kadın.
+311	bicare	Bîçare	Kadim Kelime	Çaresiz, zavallı, kimsesiz.
+312	cumle	Cümle	Kadim Kelime	Hepsi, bütün, tamamı.
+313	cin	Çın	Kadim Kelime	Doğru, hakiki, gerçek.
+314	dilfigar	Dilfigâr	Kadim Kelime	Yüreği yaralı, gönlü yaralı kimse.
+315	efsun	Efsun	Kadim Kelime	Büyü, sihir, tılsım.
+316	fecr	Fecr	Kadim Kelime	Tan vakti, sabah aydınlığı.
+317	gubari	Gubarî	Kadim Kelime	Çok küçük, ince yazı türü (hat sanatında).
+318	havas	Havas	Kadim Kelime	Seçkinler sınıfı, bilginler ve devlet ileri gelenleri.
+319	itri	Itrî	Kadim Kelime	Güzel kokuyla ilgili, mis kokulu.
+320	jale	Jale	Kadim Kelime	Çiy tanesi, kırağı.
+321	kande	Kande	Kadim Kelime	Nerede, nereye (eski Türkçe soru zamiri).
+322	lal-u-guher	Lal-ü güher	Deyim / Tabir	İnci ve mücevherler, değerli sözler.
+323	nihan	Nihan	Kadim Kelime	Gizli, saklı, gözle görülmeyen.
+324	otag	Otağ	Kadim Kelime	Büyük ve süslü çadır, padişah çadırı.
+325	purnur	Pürnur	Sözcük	Işık dolu, baştan başa aydınlık.
+326	rucu	Rücu	Kadim Kelime	Geri dönme, sözünden veya kararından vazgeçme.
+327	selsebil	Selsebil	Kadim Kelime	Cennette olduğuna inanılan tatlı ve akarsu, kolayca akan.
+328	suh	Şûh	Kadim Kelime	Neşeli, serbest hareket eden, cilveli.
+329	tazim	Tazim	Kadim Kelime	Saygı sunma, ululama.
+330	uryan	Uryan	Kadim Kelime	Çıplak, soyunuk.
+331	uftade	Üftade	Kadim Kelime	Düşkün, tutkun, aşık.
+332	vaveyla	Vaveyla	Kadim Kelime	Koprulan çığlık, feryat, kopan gürültü.
+333	yegane	Yegâne	Kadim Kelime	Bir tanecik, eşsiz, benzeri olmayan.
+334	zahir	Zahir	Kadim Kelime	Açık, ortada görünen, bellibaşlı.
+335	zulal	Zülâl	Kadim Kelime	Saf, berrak, tatlı su.
+336	eshab	Eshab	Kadim Kelime	Arkadaşlar, yarenler.
+337	fusun	Füsun	Kadim Kelime	Büyü, büyüleyici güzellik.
+338	gul	Gûl	Kadim Kelime	Gül çiçeği, efsanevi yaratık (gul).
+339	heveskar	Heveskar	Kadim Kelime	Hevesli, istekli kimse.
+340	i-ltimas	İltimas	Kadim Kelime	Kayırma, tutma, ayrıcalık tanıma.
+341	kevkeb	Kevkeb	Kadim Kelime	Yıldız, gezegen.
+342	letafet	Letafet	Kadim Kelime	Güzellik, hoşluk, incelik.
+343	nigarhane	Nigarhane	Kadim Kelime	Resim galerisi, güzel yüzlülerin bulunduğu yer.
+344	payidar	Payidar	Kadim Kelime	Sonsuza dek yaşayacak olan, kalıcı.
+345	rehnuma	Rehnüma	Kadim Kelime	Yol gösteren, kılavuz, rehber.
+346	serap	Serap	Kadim Kelime	Çölde görülen yanılsama, serap.
+347	sebnem	Şebnem	Kadim Kelime	Çiy, yapraklar üzerindeki su damlası.
+348	tahayyul	Tahayyül	Kadim Kelime	Hayal etme, zihinde canlandırma.
+349	ukde	Ukde	Kadim Kelime	Düğüm, içte kalan çözülmemiş gam veya sorun.
+350	ahd-u-misak	Ahd ü misak	Deyim / Tabir	Yemin ve sözleşme, ant.
+351	bihus	Bihuş	Kadim Kelime	Kendinden geçmiş, şaşkın, baygın.
+352	abidevi	Abidevi	Kadim Kelime	Anıt niteliğinde, çok büyük ve kalıcı.
+353	bedbin	Bedbin	Kadim Kelime	Kötümser, her şeyi karanlık gören.
+354	cihannuma	Cihannüma	Kadim Kelime	Dünyayı gösteren yer, yüksek seyir terası.
+355	cerag	Çerağ	Kadim Kelime	Işık, kandil, mum.
+356	efrad	Efrad	Kadim Kelime	Fertler, bireyler, üyeler.
+357	fusunkar	Füsunkar	Kadim Kelime	Büyüleyici, sihirli.
+358	hakir	Hakir	Kadim Kelime	Değersiz, hor görülen.
+359	itristan	Itristan	Kadim Kelime	Güzel kokulu bahçe.
+360	i-stisare	İstişare	Kadim Kelime	Danışma, fikir alışverişinde bulunma.
+361	jurnalci	Jurnalci	Kadim Kelime	İhbarcı, gizli bilgi taşıyan.
+362	kulliye	Külliye	Kadim Kelime	Bir cami etrafında kurulmuş binalar topluluğu.
+363	lisan-i-munasip	Lisan-ı münasip	Deyim / Tabir	Uygun ve kırıcı olmayan bir dil.
+364	nefisperest	Nefisperest	Kadim Kelime	Nefsine düşkün, zevk düşkünü kimse.
+365	odalik	Odalık	Kadim Kelime	Eski saraylarda cariye.
+366	pervasiz	Pervasız	Kadim Kelime	Korkusuz, çekinmeden hareket eden.
+367	rumuz	Rumuz	Kadim Kelime	Gizli simge, mahlas, işaret.
+368	sulelenmek	Şulelenmek	Kadim Kelime	Alevlenmek, parlamak.
+369	tarihselci	Tarihselci	Kadim Kelime	Olayları kendi dönemi içinde değerlendiren.
+370	ulema	Ulema	Kadim Kelime	Alimler, din ve fen bilginleri.
+371	uryan-bu-an	Üryan bu an	Deyim / Tabir	Çıplak gerçeklik anı.
+372	vefaakar	Vefaakar	Kadim Kelime	Vefalı, sözünün eri.
+373	yadigar-i-cihan	Yadigar-ı cihan	Deyim / Tabir	Dünyaya bırakılan hatıra.
+374	zaruret	Zaruret	Kadim Kelime	Zorunluluk, yoksulluk hali.
+375	ayak-diremek	Ayak diremek	Deyim / Tabir	Bir konuda ısrarcı olmak, geri adım atmamak.
+376	can-atmak	Can atmak	Deyim / Tabir	Bir şeyi yapmayı çok istemek, sabırsızlanmak.
+377	corbada-tuzu-olmak	Çorbada tuzu olmak	Deyim / Tabir	Küçük de olsa bir işe katkı sağlamak.
+378	disinden-tirnagindan-artirmak	Dişinden tırnağından artırmak	Deyim / Tabir	Büyük fedakarlıklar yaparak kıt kanaat birikim yapmak.
+379	gozu-donmek	Gözü dönmek	Deyim / Tabir	Öfkeden veya hırstan ne yaptığını bilmez hale gelmek.
+380	hafife-almak	Hafife almak	Deyim / Tabir	Bir durumu veya kişiyi önemsiz saymak.
+381	tuz-biber-ekmek	Tuz biber ekmek	Deyim / Tabir	Kötü durumu daha da kötüleştirmek.
+382	ufku-acilmak	Ufku açılmak	Deyim / Tabir	Vizyonu genişlemek, dünyayı daha iyi kavramak.
+383	yolu-acilmak	Yolu açılmak	Deyim / Tabir	Önündeki engellerin kalkması, işlerinin kolaylaşması.
+384	zihni-acilmak	Zihni açılmak	Deyim / Tabir	Anlama ve kavrama yeteneğinin artması.
+385	acik-kapi-birakmak	Açık kapı bırakmak	Deyim / Tabir	İleride uzlaşabilmek veya geri dönebilmek için bir imkan tanımak.
+386	basi-goge-ermek	Başı göğe ermek	Deyim / Tabir	Çok büyük bir sevinç yaşamak, gururlanmak.
+387	cana-minnet-bilmek	Cana minnet bilmek	Deyim / Tabir	Sunulan zoraki bir durumu veya fırsatı memnuniyetle kabul etmek.
+388	i-cine-sinmemek	İçine sinmemek	Deyim / Tabir	Bir durumdan tam anlamıyla tatmin olmamak, şüphe duymak.

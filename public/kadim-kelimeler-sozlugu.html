@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kadim Kelimeler Sözlüğü · Dilimizin Zenginlikleri</title>
+  <meta name="description" content="Tevfik Serdar Anadolu Lisesi Kadim Kelimeler Sözlüğü, Dönem/Köken Filtresi (Zaman Tüneli), Kadim Kelime Avı ve Mini Test uygulaması." />
+  
+  <!-- Fontlar -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+          },
+          colors: {
+            krem: {
+              50: '#FAF8F3',
+              100: '#F5F1E8',
+              200: '#EAE4D7',
+              300: '#D5CEBF',
+            },
+            zumrut: {
+              700: '#2D6A4F',
+              800: '#1E4E38',
+              900: '#162D23',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FAF8F3;
+      color: #1F2922;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    .dark body {
+      background-color: #131B16;
+      color: #E2EBE5;
+    }
+    /* Wordle Tuş & Kutu Geçişleri */
+    .wordle-tile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      border-radius: 0.5rem;
+      transition: all 0.25s ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ÜST MENÜ (HEADER) -->
+  <header class="sticky top-0 z-40 w-full border-b border-[#E3DDCF] bg-[#FAF8F3]/90 backdrop-blur-md transition-colors dark:border-[#28382E] dark:bg-[#141C17]/90">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+      
+      <!-- Sol: İsim ve Okul İmzası -->
+      <button onclick="sekmeyiDegistir('sozluk')" class="group flex flex-col items-start text-left focus:outline-none">
+        <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#1E3B2E] transition-colors group-hover:text-[#2D6A4F] dark:text-[#E2EBE5] dark:group-hover:text-[#74C69D]">
+          Kadim Kelimeler Sözlüğü
+        </span>
+        <span class="text-[11px] sm:text-xs font-medium text-[#52796F] dark:text-[#8AA39B]">
+          Tevfik Serdar Anadolu Lisesi · Dilimizin Zenginlikleri
+        </span>
+      </button>
+
+      <!-- Orta: Sekmeler -->
+      <nav class="hidden md:flex items-center gap-1 rounded-full border border-[#E3DDCF] bg-[#F4EFE5] p-1 dark:border-[#28382E] dark:bg-[#1B261F]">
+        <button id="nav-btn-sozluk" onclick="sekmeyiDegistir('sozluk')" class="flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-[#2D6A4F] text-[#FAF8F3] dark:bg-[#3E8E6B] dark:text-[#0F1712] transition-all">
+          Sözlük
+        </button>
+        <button id="nav-btn-wordle" onclick="sekmeyiDegistir('wordle')" class="flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold text-[#3E5246] hover:text-[#1E3B2E] dark:text-[#A7B9AF] dark:hover:text-[#E2EBE5] transition-all">
+          Kelime Avı (5 Harf)
+        </button>
+        <button id="nav-btn-test" onclick="sekmeyiDegistir('test')" class="flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold text-[#3E5246] hover:text-[#1E3B2E] dark:text-[#A7B9AF] dark:hover:text-[#E2EBE5] transition-all">
+          Kelime Testi
+        </button>
+      </nav>
+
+      <!-- Sağ: Eylemler -->
+      <div class="flex items-center gap-2">
+        <button onclick="beniSasirt()" class="group flex items-center gap-1.5 rounded-full border border-[#B7D5C4] bg-[#E8F2EC] px-3.5 py-1.5 text-xs font-semibold text-[#1E4E38] transition-all hover:bg-[#D7E9DE] dark:border-[#2E533F] dark:bg-[#1A3125] dark:text-[#95D5B2] dark:hover:bg-[#224131]">
+          <svg class="h-3.5 w-3.5 text-[#2D6A4F] dark:text-[#74C69D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+          </svg>
+          <span class="whitespace-nowrap">Beni Şaşırt</span>
+        </button>
+
+        <button id="dark-toggle" onclick="karanlikModDegistir()" class="flex h-8 w-8 items-center justify-center rounded-full border border-[#E3DDCF] bg-[#FAF8F3] text-[#3E5246] transition-all hover:bg-[#F4EFE5] dark:border-[#28382E] dark:bg-[#1B261F] dark:text-[#E2EBE5]" aria-label="Aydınlık / Karanlık Mod">
+          <svg id="theme-icon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobil Sekmeler -->
+    <div class="flex md:hidden border-t border-[#EAE4D7] bg-[#F6F3EB] px-3 py-2 dark:border-[#27332B] dark:bg-[#18211B] justify-around text-xs">
+      <button onclick="sekmeyiDegistir('sozluk')" id="mob-nav-sozluk" class="font-semibold text-[#2D6A4F] dark:text-[#74C69D]">
+        Sözlük
+      </button>
+      <button onclick="sekmeyiDegistir('wordle')" id="mob-nav-wordle" class="font-medium text-[#4A5E53] dark:text-[#A7B9AF]">
+        Kelime Avı
+      </button>
+      <button onclick="sekmeyiDegistir('test')" id="mob-nav-test" class="font-medium text-[#4A5E53] dark:text-[#A7B9AF]">
+        Test
+      </button>
+    </div>
+  </header>
+
+  <!-- ANA İÇERİK -->
+  <main class="flex-1 mx-auto max-w-6xl w-full px-4 sm:px-6 py-6 sm:py-10">
+
+    <!-- SEKME 1: SÖZLÜK GÖRÜNÜMÜ -->
+    <div id="section-sozluk" class="space-y-8">
+      
+      <!-- ARAMA ÇUBUĞU BÖLÜMÜ -->
+      <section class="text-center max-w-2xl mx-auto space-y-4">
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#162D23] dark:text-[#E8F1EC]">
+          Dilimizin Kadim Zenginlikleri
+        </h1>
+        <p class="text-sm text-[#4E6357] dark:text-[#A5B7AC]">
+          Türkçemizin derin edebi hafızasını, köklü kelimelerini, deyim ve atasözlerini dönemleriyle keşfedin.
+        </p>
+
+        <!-- Arama Kutusu -->
+        <div class="relative mt-2">
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-[#6A8174]">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="arama-input"
+            oninput="aramaYap(this.value)"
+            placeholder="Kelime, anlam veya edebi örneklerde arayın... (Örn: mütemadiyen, zarafet, nuh)"
+            class="w-full rounded-2xl border border-[#D5CEBF] bg-[#FAF8F3] py-3.5 pl-11 pr-10 text-sm placeholder-[#7E9387] focus:border-[#2D6A4F] focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]/20 transition-all dark:border-[#2C3B31] dark:bg-[#16221A] dark:text-[#E8F1EC]"
+          />
+          <button
+            id="arama-temizle"
+            onclick="aramaTemizle()"
+            class="hidden absolute inset-y-0 right-0 flex items-center pr-3.5 text-[#7E9387] hover:text-[#162D23] dark:hover:text-[#E8F1EC]"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Kategori Filtre Butonları -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 pt-1">
+          <button id="filtre-btn-tumu" onclick="kategoriFiltrele('tumu')" class="rounded-full px-3.5 py-1 text-xs font-semibold bg-[#2D6A4F] text-[#FAF8F3] dark:bg-[#3E8E6B] dark:text-[#0F1712] transition-all">
+            Tüm Kayıtlar (<span id="sayac-tumu">389</span>)
+          </button>
+          <button id="filtre-btn-kelimeler" onclick="kategoriFiltrele('kelimeler')" class="rounded-full px-3.5 py-1 text-xs font-medium border border-[#E3DDCF] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+            Kadim Kelimeler
+          </button>
+          <button id="filtre-btn-deyimler" onclick="kategoriFiltrele('deyimler')" class="rounded-full px-3.5 py-1 text-xs font-medium border border-[#E3DDCF] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+            Deyimler & Terkipler
+          </button>
+          <button id="filtre-btn-atasozleri" onclick="kategoriFiltrele('atasozleri')" class="rounded-full px-3.5 py-1 text-xs font-medium border border-[#E3DDCF] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+            Atasözleri
+          </button>
+          <button id="filtre-btn-favoriler" onclick="kategoriFiltrele('favoriler')" class="rounded-full px-3.5 py-1 text-xs font-medium border border-[#E3DDCF] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+            Favorilerim (<span id="sayac-favoriler">0</span>)
+          </button>
+        </div>
+
+        <!-- 1. DÖNEM / KÖKEN FİLTRESİ (ZAMAN TÜNELİ MANTIĞI) -->
+        <div class="pt-3 border-t border-[#EAE4D7] dark:border-[#27362E] flex flex-col items-center gap-2">
+          <div class="flex items-center gap-1.5 text-[11px] font-semibold text-[#52796F] dark:text-[#8AA39B] uppercase tracking-wider">
+            <svg class="h-3.5 w-3.5 text-[#2D6A4F] dark:text-[#74C69D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Zaman Tüneli · Dönem ve Köken Filtresi</span>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-1.5" id="donem-filtre-alani">
+            <button onclick="donemFiltrele('Tüm Dönemler')" data-donem="Tüm Dönemler" class="donem-btn rounded-full px-3 py-1 text-xs font-medium bg-[#1E3B2E] text-[#FAF8F3] dark:bg-[#74C69D] dark:text-[#0F1712] shadow-sm transition-all">
+              Tüm Dönemler
+            </button>
+            <button onclick="donemFiltrele('Göktürkçe İzleri ve Eski Türkçe')" data-donem="Göktürkçe İzleri ve Eski Türkçe" class="donem-btn rounded-full px-3 py-1 text-xs font-medium border border-[#DCD5C6] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+              Göktürkçe İzleri ve Eski Türkçe
+            </button>
+            <button onclick="donemFiltrele('Divânü Lügati't-Türk & Karahanlı Dönemi')" data-donem="Divânü Lügati't-Türk & Karahanlı Dönemi" class="donem-btn rounded-full px-3 py-1 text-xs font-medium border border-[#DCD5C6] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+              Divânü Lügati't-Türk & Karahanlı Dönemi
+            </button>
+            <button onclick="donemFiltrele('Divan Edebiyatı ve Tasavvuf')" data-donem="Divan Edebiyatı ve Tasavvuf" class="donem-btn rounded-full px-3 py-1 text-xs font-medium border border-[#DCD5C6] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+              Divan Edebiyatı ve Tasavvuf
+            </button>
+            <button onclick="donemFiltrele('Anadolu Ağzı ve Halk Deyimleri')" data-donem="Anadolu Ağzı ve Halk Deyimleri" class="donem-btn rounded-full px-3 py-1 text-xs font-medium border border-[#DCD5C6] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all">
+              Anadolu Ağzı ve Halk Deyimleri
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- GÜNÜN KELİMESİ KARTI -->
+      <section id="gunun-kelimesi-alani" class="relative overflow-hidden rounded-2xl border border-[#D5CEBF] bg-gradient-to-br from-[#F5F1E8] via-[#FAF8F3] to-[#EFEAE0] p-6 sm:p-8 shadow-sm dark:border-[#2C3B31] dark:from-[#17221B] dark:via-[#1A261F] dark:to-[#141C17]">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#E3DDCF] pb-3 dark:border-[#28382F]">
+          <div class="flex items-center gap-2">
+            <span class="flex h-5 w-5 items-center justify-center rounded-full bg-[#2D6A4F]/10 text-[#2D6A4F] dark:bg-[#74C69D]/15 dark:text-[#74C69D]">
+              <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </span>
+            <span class="text-xs font-semibold tracking-wider text-[#2D6A4F] uppercase dark:text-[#88D4AB]">
+              Günün Kadim Kelimesi
+            </span>
+          </div>
+          <div id="gk-meta" class="text-xs font-medium text-[#5C6E64] dark:text-[#95A89E]"></div>
+        </div>
+
+        <div class="mt-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+          <div class="flex items-baseline gap-3">
+            <h2 id="gk-baslik" class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#162D23] dark:text-[#E8F1EC]"></h2>
+            <span id="gk-telaffuz" class="font-serif text-sm italic text-[#52796F] dark:text-[#8AA39B]"></span>
+          </div>
+
+          <button id="gk-ses-btn" onclick="gununKelimesiniSeslendir()" class="self-start sm:self-auto flex items-center gap-1.5 rounded-full border border-[#CBD5C0] bg-[#FAF8F3] px-3.5 py-1.5 text-xs font-medium text-[#2D6A4F] hover:bg-[#EBF2ED] transition-colors dark:border-[#384A3F] dark:bg-[#1E2922] dark:text-[#95D5B2]">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+            <span>Seslendir</span>
+          </button>
+        </div>
+
+        <div class="mt-4 rounded-xl border border-[#E3DDCF] bg-[#FAF8F3]/90 p-4 text-base leading-relaxed text-[#24352D] font-medium dark:border-[#27382D] dark:bg-[#152019]/80 dark:text-[#D5E2DA]">
+          <p id="gk-anlam"></p>
+        </div>
+
+        <div class="mt-4 border-t border-[#E3DDCF] pt-3 dark:border-[#28382F]">
+          <span class="block text-xs font-semibold uppercase tracking-wider text-[#52796F] dark:text-[#8AA39B] mb-1">
+            Edebi Cümle Örneği
+          </span>
+          <blockquote id="gk-ornek" class="font-serif text-base italic leading-relaxed text-[#33463C] dark:text-[#C5D5CC]"></blockquote>
+        </div>
+      </section>
+
+      <!-- KELİME KARTLARI LİSTESİ -->
+      <section>
+        <div class="flex items-center justify-between mb-4 border-b border-[#E3DDCF] pb-3 dark:border-[#28382E]">
+          <div class="text-xs font-semibold uppercase tracking-wider text-[#52796F] dark:text-[#8AA39B]">
+            Kadim Sözlük Dizini
+          </div>
+          <div id="liste-sayac" class="text-xs text-[#5C6E64] dark:text-[#8E9F96]"></div>
+        </div>
+
+        <!-- Kart Grid -->
+        <div id="kelimeler-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
+
+        <!-- Yükle / Daha Fazla Göster Butonu -->
+        <div id="daha-fazla-alani" class="mt-8 text-center hidden">
+          <button onclick="dahaFazlaGoster()" class="rounded-full bg-[#2D6A4F] px-6 py-2.5 text-xs font-semibold text-[#FAF8F3] shadow-sm hover:bg-[#24543E] transition-all dark:bg-[#3E8E6B] dark:text-[#0F1712]">
+            Daha Fazla Kelime Göster (+24)
+          </button>
+        </div>
+
+        <!-- Bulunamadı Durumu -->
+        <div id="bos-durum" class="hidden text-center py-16 rounded-2xl border border-dashed border-[#D5CEBF] p-8 dark:border-[#2E3C33]">
+          <p class="font-serif text-xl text-[#3A4E43] dark:text-[#B6C8BF]">
+            Aradığınız kriterlere uygun kadim kelime bulunamadı.
+          </p>
+          <p class="mt-1 text-xs text-[#5C6E64] dark:text-[#8E9F96]">
+            Arama metnini değiştirebilir veya dönem filtresini sıfırlayabilirsiniz.
+          </p>
+          <button onclick="filtreleriSifirla()" class="mt-4 rounded-full bg-[#2D6A4F] px-4 py-2 text-xs font-semibold text-[#FAF8F3] hover:bg-[#24543E] dark:bg-[#3E8E6B] dark:text-[#0F1712]">
+            Filtreleri Sıfırla
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- SEKME 2: 2. KADİM KELİME AVI (WORDLE TARZI 5 HARFLİ OYUN) -->
+    <div id="section-wordle" class="hidden space-y-6 max-w-2xl mx-auto py-2">
+      <!-- Başlık ve Kurallar -->
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center gap-1.5 rounded-full bg-[#2D6A4F]/10 px-3 py-1 text-xs font-semibold text-[#2D6A4F] dark:bg-[#74C69D]/15 dark:text-[#74C69D]">
+          <span>Kadim Kelime Avı · 5 Harf</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#162D23] dark:text-[#E8F1EC]">
+          6 Denemede Kadim Kelimeyi Bul
+        </h2>
+        <p class="text-xs sm:text-sm text-[#4E6357] dark:text-[#A5B7AC]">
+          Her tahminden sonra kutucukların rengi tahmininizin doğruluğuna göre değişir.
+        </p>
+      </div>
+
+      <!-- Renk İpuçları -->
+      <div class="flex items-center justify-center gap-4 text-xs font-medium text-[#4E6357] dark:text-[#A5B7AC] py-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded bg-[#2D6A4F]"></span>
+          <span>Doğru yer</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded bg-[#D97706]"></span>
+          <span>Yanlış yer</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-3.5 h-3.5 rounded bg-[#4B5563]"></span>
+          <span>Kelime yok</span>
+        </div>
+      </div>
+
+      <!-- Oyun Kontrolleri: İpucu & Yeni Oyun -->
+      <div class="flex items-center justify-between px-2">
+        <button id="wordle-ipucu-btn" onclick="wordleIpucuVer()" class="flex items-center gap-1 text-xs font-semibold text-[#2D6A4F] hover:underline dark:text-[#74C69D]">
+          💡 İpucu Al (Anlam/Dönem)
+        </button>
+        <span id="wordle-deneme-bilgi" class="text-xs text-[#5C6E64] dark:text-[#8E9F96]">Deneme 1 / 6</span>
+        <button onclick="wordleBaslat()" class="text-xs font-medium rounded-full border border-[#D5CEBF] px-3 py-1 text-[#2F4237] hover:bg-[#EFEAE0] dark:border-[#384B3F] dark:text-[#C5D5CC]">
+          Yeniden Başlat
+        </button>
+      </div>
+
+      <!-- İpucu Kutusu (Açıldığında) -->
+      <div id="wordle-ipucu-kutusu" class="hidden rounded-xl border border-[#D5CEBF] bg-[#F5F1E8] p-3 text-xs leading-relaxed text-[#24352D] dark:border-[#2C3B31] dark:bg-[#16221A] dark:text-[#D5E2DA]">
+        <strong id="wordle-ipucu-donem" class="text-[#2D6A4F] dark:text-[#74C69D]"></strong>
+        <p id="wordle-ipucu-metin" class="mt-1 italic"></p>
+      </div>
+
+      <!-- 6x5 Wordle Izgarası -->
+      <div class="flex justify-center my-4">
+        <div id="wordle-grid" class="grid grid-rows-6 gap-2 w-full max-w-[320px]">
+          <!-- 6 satır JS tarafından doldurulacak -->
+        </div>
+      </div>
+
+      <!-- Sanal Türkçe Klavye -->
+      <div id="wordle-klavye" class="space-y-1.5 max-w-lg mx-auto select-none pt-2">
+        <!-- Satır 1: E R T Y U I O P Ğ Ü -->
+        <div class="flex justify-center gap-1 sm:gap-1.5" id="klavye-satir-1"></div>
+        <!-- Satır 2: A S D F G H J K L Ş İ -->
+        <div class="flex justify-center gap-1 sm:gap-1.5" id="klavye-satir-2"></div>
+        <!-- Satır 3: GİRİŞ Z C V B N M Ö Ç ⌫ -->
+        <div class="flex justify-center gap-1 sm:gap-1.5" id="klavye-satir-3"></div>
+      </div>
+
+      <!-- Oyun Sonu Kartı -->
+      <div id="wordle-sonuc-kart" class="hidden rounded-2xl border border-[#D5CEBF] bg-[#FAF8F3] p-6 shadow-md dark:border-[#2C3B31] dark:bg-[#16221A] text-center space-y-4">
+        <div id="wordle-sonuc-ikon" class="text-3xl">🎉</div>
+        <h3 id="wordle-sonuc-baslik" class="font-serif text-2xl font-bold text-[#162D23] dark:text-[#E8F1EC]">Tebrikler!</h3>
+        <p id="wordle-sonuc-mesaj" class="text-sm text-[#4E6357] dark:text-[#A5B7AC]"></p>
+        
+        <div class="rounded-xl border border-[#E3DDCF] bg-[#F5F1E8] p-4 text-left dark:border-[#28382F] dark:bg-[#1C2820]">
+          <div class="flex items-baseline justify-between">
+            <h4 id="wordle-kelime-reveal" class="font-serif text-2xl font-bold text-[#2D6A4F] dark:text-[#74C69D]"></h4>
+            <span id="wordle-donem-reveal" class="text-xs text-[#52796F] dark:text-[#8AA39B]"></span>
+          </div>
+          <p id="wordle-anlam-reveal" class="mt-2 text-sm text-[#24352D] font-medium dark:text-[#D5E2DA]"></p>
+          <p id="wordle-ornek-reveal" class="mt-2 text-xs italic text-[#5C6E64] dark:text-[#8E9F96]"></p>
+        </div>
+
+        <div class="flex justify-center gap-3 pt-2">
+          <button onclick="wordleKelimesiniSeslendir()" class="rounded-full border border-[#CBD5C0] bg-[#FAF8F3] px-4 py-2 text-xs font-semibold text-[#2D6A4F] hover:bg-[#EBF2ED] dark:border-[#384A3F] dark:bg-[#1E2922] dark:text-[#95D5B2]">
+            🔊 Kelimeyi Dinle
+          </button>
+          <button onclick="wordleBaslat()" class="rounded-full bg-[#2D6A4F] px-5 py-2 text-xs font-semibold text-[#FAF8F3] shadow hover:bg-[#24543E] dark:bg-[#3E8E6B] dark:text-[#0F1712]">
+            Yeni Kelime Avı Oyna
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEKME 3: MİNİ OYUN (KELİME TESTİ) -->
+    <div id="section-test" class="hidden space-y-6 max-w-2xl mx-auto py-4">
+      <div class="text-center space-y-2">
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#162D23] dark:text-[#E8F1EC]">
+          Kadim Kelimeler Bilgi Testi
+        </h2>
+        <p class="text-sm text-[#4E6357] dark:text-[#A5B7AC]">
+          10 rastgele kadim kelimenin anlamını tahmin edin ve puanınızı görün.
+        </p>
+      </div>
+
+      <!-- Test Kartı -->
+      <div class="rounded-2xl border border-[#D5CEBF] bg-[#FAF8F3] p-6 sm:p-8 shadow-sm dark:border-[#2C3B31] dark:bg-[#16221A]">
+        
+        <!-- Başlama Öncesi Ekran -->
+        <div id="test-baslangic" class="text-center py-8 space-y-5">
+          <p class="text-sm leading-relaxed text-[#33463C] dark:text-[#C5D5CC]">
+            Bu test, 389 kelimelik kadim sözlüğümüzden rastgele seçilen 10 soru ile kelime dağarcığınızı sınar.
+          </p>
+          <button onclick="testiBaslat()" class="rounded-full bg-[#2D6A4F] px-8 py-3 text-sm font-semibold text-[#FAF8F3] shadow-md hover:bg-[#24543E] transition-all dark:bg-[#3E8E6B] dark:text-[#0F1712]">
+            Teste Başla
+          </button>
+        </div>
+
+        <!-- Aktif Soru Alanı -->
+        <div id="test-aktif-alani" class="hidden space-y-6">
+          <div class="flex items-center justify-between border-b border-[#E3DDCF] pb-3 text-xs dark:border-[#27382D]">
+            <span id="test-soru-sayac" class="font-semibold text-[#2D6A4F] dark:text-[#74C69D]">Soru 1 / 10</span>
+            <div class="flex items-center gap-3">
+              <span class="text-[#2D6A4F] dark:text-[#74C69D]">Doğru: <strong id="test-dogru-sayac">0</strong></span>
+              <span class="text-[#B94A32] dark:text-[#E07A5F]">Yanlış: <strong id="test-yanlis-sayac">0</strong></span>
+            </div>
+          </div>
+
+          <div class="w-full bg-[#EAE4D7] h-1.5 rounded-full overflow-hidden dark:bg-[#223028]">
+            <div id="test-ilerleme-cubugu" class="bg-[#2D6A4F] h-full transition-all duration-300 dark:bg-[#3E8E6B]" style="width: 10%;"></div>
+          </div>
+
+          <div class="text-center py-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#52796F] dark:text-[#8AA39B]">Aşağıdaki kadim kelimenin anlamı nedir?</span>
+            <h3 id="test-soru-kelime" class="font-serif text-3xl sm:text-4xl font-bold text-[#162D23] dark:text-[#E8F1EC] mt-2"></h3>
+            <p id="test-soru-telaffuz" class="font-serif text-sm italic text-[#52796F] dark:text-[#8AA39B] mt-1"></p>
+          </div>
+
+          <div id="test-secenekler" class="space-y-3"></div>
+
+          <div id="test-alt-cubuk" class="hidden flex items-center justify-between border-t border-[#E3DDCF] pt-4 dark:border-[#27382D]">
+            <span id="test-geri-bildirim" class="text-xs font-semibold"></span>
+            <button onclick="sonrakiTestSorusu()" class="rounded-full bg-[#2D6A4F] px-5 py-2 text-xs font-semibold text-[#FAF8F3] hover:bg-[#24543E] dark:bg-[#3E8E6B] dark:text-[#0F1712]">
+              <span id="test-btn-metin">Sonraki Soru &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Test Sonuç Ekranı -->
+        <div id="test-sonuc-alani" class="hidden text-center py-8 space-y-6">
+          <h3 class="font-serif text-3xl font-bold text-[#162D23] dark:text-[#E8F1EC]">Test Tamamlandı!</h3>
+          <div class="flex justify-center items-center gap-6">
+            <div class="rounded-2xl bg-[#E8F5ED] p-4 min-w-[100px] dark:bg-[#1B3325]">
+              <span class="block text-2xl font-bold text-[#2D6A4F] dark:text-[#74C69D]" id="sonuc-dogru">0</span>
+              <span class="text-xs font-medium text-[#1E4E38] dark:text-[#95D5B2]">Doğru</span>
+            </div>
+            <div class="rounded-2xl bg-[#FDF0ED] p-4 min-w-[100px] dark:bg-[#331C18]">
+              <span class="block text-2xl font-bold text-[#B94A32] dark:text-[#E07A5F]" id="sonuc-yanlis">0</span>
+              <span class="text-xs font-medium text-[#7A2818] dark:text-[#F3B0A0]">Yanlış</span>
+            </div>
+            <div class="rounded-2xl bg-[#F4EFE5] p-4 min-w-[100px] dark:bg-[#1E2922]">
+              <span class="block text-2xl font-bold text-[#1E3B2E] dark:text-[#E2EBE5]" id="sonuc-puan">%0</span>
+              <span class="text-xs font-medium text-[#52796F] dark:text-[#8AA39B]">Başarı</span>
+            </div>
+          </div>
+          <p id="test-sonuc-aciklama" class="text-sm text-[#4E6357] max-w-md mx-auto dark:text-[#A5B7AC]"></p>
+          <button onclick="testiBaslat()" class="rounded-full bg-[#2D6A4F] px-6 py-2.5 text-xs font-semibold text-[#FAF8F3] hover:bg-[#24543E] dark:bg-[#3E8E6B] dark:text-[#0F1712]">
+            Testi Tekrar Çöz
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ALT BİLGİ (FOOTER) -->
+  <footer class="border-t border-[#E3DDCF] bg-[#FAF8F3] py-6 text-xs text-[#5C6E64] transition-colors dark:border-[#28382E] dark:bg-[#121A15] dark:text-[#8AA39B]">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      <div>
+        <p class="font-serif font-bold text-sm text-[#1E3B2E] dark:text-[#E2EBE5]">
+          Kadim Kelimeler Sözlüğü
+        </p>
+        <p class="text-[11px] text-[#6A8174] dark:text-[#7A9386]">
+          Tevfik Serdar Anadolu Lisesi · Dilimizin Zenginlikleri Projesi
+        </p>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <button onclick="sekmeyiDegistir('sozluk')" class="hover:text-[#2D6A4F] dark:hover:text-[#74C69D]">Sözlük</button>
+        <span>·</span>
+        <button onclick="sekmeyiDegistir('wordle')" class="hover:text-[#2D6A4F] dark:hover:text-[#74C69D]">Kelime Avı (5 Harf)</button>
+        <span>·</span>
+        <button onclick="sekmeyiDegistir('test')" class="hover:text-[#2D6A4F] dark:hover:text-[#74C69D]">Kelime Testi</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: KELİME DETAY -->
+  <div id="detay-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div onclick="detayKapat()" class="fixed inset-0 bg-[#141C17]/60 backdrop-blur-sm"></div>
+    <div class="relative z-10 w-full max-w-xl overflow-hidden rounded-2xl border border-[#D5CEBF] bg-[#FAF8F3] p-6 sm:p-8 shadow-2xl dark:border-[#2E3C33] dark:bg-[#16221A]">
+      <div class="flex items-center justify-between border-b border-[#E3DDCF] pb-4 dark:border-[#27382D]">
+        <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#52796F] dark:text-[#8AA39B]">
+          <span id="modal-turu"></span>
+          <span>·</span>
+          <span id="modal-koken"></span>
+          <span id="modal-donem-wrap" class="hidden">
+            <span>·</span>
+            <span id="modal-donem" class="rounded-full bg-[#E5ECE7] px-2 py-0.5 text-[10px] text-[#24533E] dark:bg-[#1E3025] dark:text-[#86CEAA]"></span>
+          </span>
+        </div>
+        <button onclick="detayKapat()" class="flex h-8 w-8 items-center justify-center rounded-full text-[#5C6E64] hover:bg-[#EFEAE0] dark:text-[#8AA39B]">✕</button>
+      </div>
+
+      <div class="my-5">
+        <h2 id="modal-kelime" class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#162D23] dark:text-[#E8F1EC]"></h2>
+        <p id="modal-telaffuz" class="mt-1 font-serif text-base italic text-[#52796F] dark:text-[#8AA39B]"></p>
+      </div>
+
+      <div class="rounded-xl border border-[#E3DDCF] bg-[#F5F1E8] p-5 text-base leading-relaxed text-[#24352D] font-medium dark:border-[#2A3B30] dark:bg-[#1C2820] dark:text-[#D5E2DA]">
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-[#52796F] dark:text-[#8AA39B] mb-1">Sözlük Anlamı</h4>
+        <p id="modal-anlam"></p>
+        <p id="modal-ekbilgi" class="hidden mt-3 text-xs leading-relaxed text-[#5C6E64] dark:text-[#95A89E] border-t border-[#E3DDCF] pt-2 dark:border-[#28382F]"></p>
+      </div>
+
+      <div class="mt-5 border-t border-[#E3DDCF] pt-4 dark:border-[#27382D]">
+        <span class="block text-xs font-semibold uppercase tracking-wider text-[#52796F] dark:text-[#8AA39B] mb-1">Edebi Cümle İçinde Kullanımı</span>
+        <blockquote id="modal-ornek" class="font-serif text-base sm:text-lg italic leading-relaxed text-[#33463C] dark:text-[#C5D5CC]"></blockquote>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between border-t border-[#E3DDCF] pt-4 dark:border-[#27382D]">
+        <div class="flex items-center gap-2">
+          <button id="modal-ses-btn" onclick="modalKelimesiniSeslendir()" class="flex items-center gap-1.5 rounded-full border border-[#CBD5C0] bg-[#FAF8F3] px-4 py-2 text-xs font-medium text-[#2D6A4F] hover:bg-[#EBF2ED] dark:border-[#384A3F] dark:bg-[#1E2922] dark:text-[#95D5B2]">
+            🔊 Seslendir
+          </button>
+          <button onclick="modalKopyala()" class="rounded-full border border-[#D5CEBF] bg-[#FAF8F3] px-3 py-2 text-xs font-medium text-[#5C6E64] hover:bg-[#EFEAE0] dark:border-[#384A3F] dark:bg-[#1E2922] dark:text-[#8AA39B]">
+            📋 Kopyala
+          </button>
+        </div>
+        <button onclick="detayKapat()" class="rounded-full border border-[#D5CEBF] bg-[#FAF8F3] px-4 py-2 text-xs font-semibold text-[#2F4237] hover:bg-[#EFEAE0] dark:border-[#384B3F] dark:bg-[#1A251E] dark:text-[#C5D5CC]">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT KODLARI -->
+  <script>
+    // 389 KELİMELİK VERİTABANI
+    const KELIMELER = [{"kelime": "Mütemadiyen", "anlam": "Aralıksız, durmaksızın, sürekli olarak.", "turu": "Zarf", "koken": "Arapça (mütemādī)", "telaffuz": "mü-te-mâ-di-yen", "ornekCumle": "Güz rüzgârları pencerelerimize mütemadiyen çarpıyor, eski konağın ahşap pervazlarında hüzünlü nağmeler bırakıyordu.", "id": "mutemadiyen", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"kelime": "Mütekabiliyetçi", "anlam": "Karşılıklılık ilkesini savunan ve uygulayan.", "turu": "Sıfat", "koken": "Arapça (mütekābil)", "telaffuz": "mü-te-kâ-bi-li-yet-çi", "ornekCumle": "Devletlerarası münasebetlerde daima mütekabiliyetçi bir anlayış gözetilmiş, eşitlikten taviz verilmemiştir.", "id": "mutekabiliyetci", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"kelime": "Mütemayizane", "anlam": "Başkalarından farklı ve üstün bir nitelik sergileyerek.", "turu": "Zarf", "koken": "Arapça (mütemāyiz)", "telaffuz": "mü-te-mâ-yi-zâ-ne", "ornekCumle": "Münazarada sergilediği mütemayizane hitabeti, salondaki tüm dinleyicilerin hayranlığını kazanmasını sağladı.", "id": "mutemayizane", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"kelime": "Müteselsil sorumluluk", "anlam": "Zincirleme olarak birbirine bağlı borç veya sorumluluk durumu.", "turu": "Terim / İsim Tamlaması", "koken": "Arapça (müteselsil)", "telaffuz": "mü-te-sel-sil so-rum-lu-luk", "ornekCumle": "Vakfın idaresindeki her bir üye, alınan kararların neticesinde müteselsil sorumluluk altındadır.", "id": "muteselsil-sorumluluk", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"kelime": "Mütecavizane", "anlam": "Saldırgan bir tavırla, taarruz amacıyla.", "turu": "Zarf", "koken": "Arapça (mütecāvīz)", "telaffuz": "mü-te-câ-vi-zâ-ne", "ornekCumle": "Hudut boylarında vuku bulan mütecavizane hareketler, muhafızların uyanıklığı sayesinde anında bertaraf edildi.", "id": "mutecavizane", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"kelime": "İpe sapa gelmez", "anlam": "Mantıksız, saçma ve tutarsız (söz veya davranış).", "turu": "Deyim", "koken": "Türkçe", "telaffuz": "i-pe sa-pa gel-mez", "ornekCumle": "Ortaya attığı ipe sapa gelmez iddialarla meclisi oyalamaktan başka bir gayesi yoktu.", "id": "i-pe-sapa-gelmez", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"kelime": "Kanına girmek", "anlam": "Birini kötü bir yola düşürmek veya haksız yere ölümüne sebep olmak.", "turu": "Deyim", "koken": "Türkçe", "telaffuz": "ka-nı-na gir-mek", "ornekCumle": "O tecrübesiz masum gencin kanına girerek bütün istikbalini karartanlara karşı derin bir teessür duyuyordu.", "id": "kanina-girmek", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"kelime": "Laf ebeliği yapmak", "anlam": "Boş sözlerle karşı tarafı laf kalabalığına boğmak.", "turu": "Deyim", "koken": "Türkçe", "telaffuz": "laf e-be-li-ği yap-mak", "ornekCumle": "Hakikati ikrar etmek yerine laf ebeliği yaparak zaman kazanmaya çalışması kimsenin gözünden kaçmadı.", "id": "laf-ebeligi-yapmak", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"kelime": "Misket gibi yuvarlanmak", "anlam": "Hızlı ve kolayca bir süreçten geçmek (mecazi olarak işlerin akışı).", "turu": "Deyim", "koken": "Türkçe", "telaffuz": "mis-ket gi-bi yu-var-lan-mak", "ornekCumle": "Tüm hazırlıklar pürüzsüz yürütülünce haftalardır bekleyen işler misket gibi yuvarlandı.", "id": "misket-gibi-yuvarlanmak", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"kelime": "Nuh diyor peygamber demiyor", "anlam": "Hiçbir şekilde ikna edilemeyen, ısrarından vazgeçmeyen kimse.", "turu": "Deyim", "koken": "Türkçe / Kültürel Atıf", "telaffuz": "nuh di-yor pey-gam-ber de-mi-yor", "ornekCumle": "Bütün heyet günlerce dil döktü; lakin o Nuh diyor peygamber demiyor, inadından zerre kadar taviz vermiyordu.", "id": "nuh-diyor-peygamber-demiyor", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ab-i-hayat", "kelime": "Ab-ı hayat", "anlam": "Ölümsüzlük suyu, hayat suyu.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "ab-ı hayat", "ornekCumle": "Ab-ı hayat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ehlivukuf", "kelime": "Ehlivukuf", "anlam": "Bilirkişi, anlayan, işin ehli olan kimse.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "ehlivukuf", "ornekCumle": "Ehlivukuf tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutefekkir", "kelime": "Mütefekkir", "anlam": "Düşünür, fikir adamı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütefekkir", "ornekCumle": "Mütefekkir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustesna", "kelime": "Müstesna", "anlam": "İstisnai, benzerlerinden farklı, seçkin.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstesna", "ornekCumle": "Müstesna tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "feraset", "kelime": "Feraset", "anlam": "Seziş, anlayış, zeka, olayları önceden sezme yeteneği.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "feraset", "ornekCumle": "Feraset tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "kenz", "kelime": "Kenz", "anlam": "Hazine, gizli hazine, kıymetli şey.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "kenz", "ornekCumle": "Kenz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "nigar", "kelime": "Nigar", "anlam": "Resim, güzel yüzlü sevgili.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nigar", "ornekCumle": "Nigar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "dilhun", "kelime": "Dilhun", "anlam": "Yüreği kan ağlayan, çok üzgün.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "dilhun", "ornekCumle": "Dilhun tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "serapa", "kelime": "Serapa", "anlam": "Baştan başa, tamamen.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "serapa", "ornekCumle": "Serapa tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "meftun", "kelime": "Meftun", "anlam": "Tutkun, aşık, hayran.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "meftun", "ornekCumle": "Meftun tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "girift", "kelime": "Girift", "anlam": "Karmaşık, çözülmesi zor, karışık.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "girift", "ornekCumle": "Girift tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "zuppe", "kelime": "Züppe", "anlam": "Görgü kurallarını yanlış veya aşırı uygulayan, yapmacık kimse.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "züppe", "ornekCumle": "Züppe tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mumtaz", "kelime": "Mümtaz", "anlam": "Seçkin, imtiyazlı, üstün.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mümtaz", "ornekCumle": "Mümtaz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukellef", "kelime": "Mükellef", "anlam": "Eksiksiz, zengin, donanımlı (örn. mükellef sofra).", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mükellef", "ornekCumle": "Mükellef tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "serhad", "kelime": "Serhad", "anlam": "Sınır boyu, uç beyliklerinin bulunduğu yer.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "serhad", "ornekCumle": "Serhad tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "nazenin", "kelime": "Nazenin", "anlam": "Çok nazlı, incitmekten korkulan, zarif.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nazenin", "ornekCumle": "Nazenin tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mecalim", "kelime": "Mecalim", "anlam": "Güçler, takatlar, dermanlar.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "mecalim", "ornekCumle": "Mecalim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "gubar", "kelime": "Gubar", "anlam": "Toz, toprak.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "gubar", "ornekCumle": "Gubar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "nev-javan", "kelime": "Nev-javan", "anlam": "Genç, taze delikanlı.", "turu": "Terkip", "koken": "Farsça / Osmanlıca", "telaffuz": "nev-javan", "ornekCumle": "Nev-javan tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "ahenk", "kelime": "Ahenk", "anlam": "Uyum, düzen.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "ahenk", "ornekCumle": "Ahenk tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "zaman-i-kadim", "kelime": "Zaman-ı kadim", "anlam": "Eski zamanlar, kadim devirler.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "zaman-ı kadim", "ornekCumle": "Zaman-ı kadim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "misvak", "kelime": "Misvak", "anlam": "Diş temizliğinde kullanılan bitkisel çubuk (metaforik olarak temizlik/öz anlamında da kullanılır).", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "misvak", "ornekCumle": "Misvak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "cihanpesent", "kelime": "Cihanpesent", "anlam": "Cihanın beğendiği, dünya çapında güzel.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "cihanpesent", "ornekCumle": "Cihanpesent tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "sule", "kelime": "Şule", "anlam": "Alev, parlaklık.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "şule", "ornekCumle": "Şule tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "zinet", "kelime": "Zînet", "anlam": "Süs, ziynet eşyası.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "zînet", "ornekCumle": "Zînet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "zulfuyar", "kelime": "Zülfüyâr", "anlam": "Sevgilinin zülüflü saçı (hassas noktalar, dokunulmaması gereken yerler anlamında kullanılır).", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "zülfüyâr", "ornekCumle": "Zülfüyâr tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "efsunkar", "kelime": "Efsunkâr", "anlam": "Büyülü, büyüleyici.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "efsunkâr", "ornekCumle": "Efsunkâr tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "ruzigar", "kelime": "Rûzigâr", "anlam": "Zaman, devir, rüzgar.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "rûzigâr", "ornekCumle": "Rûzigâr tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "safderun", "kelime": "Safderun", "anlam": "Saf, kolayca aldatılabilen, temiz kalpli.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "safderun", "ornekCumle": "Safderun tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "tevekkul", "kelime": "Tevekkül", "anlam": "Allah'a güvenme, kadere razı olma.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "tevekkül", "ornekCumle": "Tevekkül tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "vuslat", "kelime": "Vuslat", "anlam": "Kavuşma, sevgiliye kavuşma anı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "vuslat", "ornekCumle": "Vuslat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "hicran", "kelime": "Hicran", "anlam": "Ayrılık acısı, hasret.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "hicran", "ornekCumle": "Hicran tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "i-clal", "kelime": "İclal", "anlam": "Saygı göstergesinde bulunma, ululama.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "i̇clal", "ornekCumle": "İclal tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "i-llet", "kelime": "İllet", "anlam": "Hastalık, sebep, kusur.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "i̇llet", "ornekCumle": "İllet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "kevser", "kelime": "Kevser", "anlam": "Cennetteki bir nehir, bol nimet.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "kevser", "ornekCumle": "Kevser tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mecnun", "kelime": "Mecnun", "anlam": "Deli, çılgınca aşık.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "mecnun", "ornekCumle": "Mecnun tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mehtap", "kelime": "Mehtap", "anlam": "Ay ışığı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "mehtap", "ornekCumle": "Mehtap tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mihnet", "kelime": "Mihnet", "anlam": "Sıkıntı, eziyet, çile.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "mihnet", "ornekCumle": "Mihnet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muvaffak", "kelime": "Muvaffak", "anlam": "Başarılı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muvaffak", "ornekCumle": "Muvaffak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mucevher", "kelime": "Mücevher", "anlam": "Değerli taş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mücevher", "ornekCumle": "Mücevher tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "nasihat", "kelime": "Nasihat", "anlam": "Öğüt.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nasihat", "ornekCumle": "Nasihat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "nefis", "kelime": "Nefis", "anlam": "Öz, can, hoş, güzel.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nefis", "ornekCumle": "Nefis tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "nihayet", "kelime": "Nihayet", "anlam": "Son, sonuç.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nihayet", "ornekCumle": "Nihayet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "pak", "kelime": "Pak", "anlam": "Temiz, lekesiz.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "pak", "ornekCumle": "Pak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "pervane", "kelime": "Pervane", "anlam": "Işığın etrafında dönen kelebek, aşık.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "pervane", "ornekCumle": "Pervane tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "rehber", "kelime": "Rehber", "anlam": "Kılavuz, yol gösterici.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "rehber", "ornekCumle": "Rehber tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "sema", "kelime": "Sema", "anlam": "Gökyüzü, gök.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "sema", "ornekCumle": "Sema tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "semender", "kelime": "Semender", "anlam": "Ateşte yaşayabildiğine inanılan efsanevi hayvan.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "semender", "ornekCumle": "Semender tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "sefkat", "kelime": "Şefkat", "anlam": "Acıma ve sevgi hissi.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "şefkat", "ornekCumle": "Şefkat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "siir", "kelime": "Şiir", "anlam": "Duygu ve hayal uyandıran söz sanatı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "şiir", "ornekCumle": "Şiir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "tahammul", "kelime": "Tahammül", "anlam": "Dayanma, katlanma gücü.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "tahammül", "ornekCumle": "Tahammül tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "tekamul", "kelime": "Tekamül", "anlam": "Olgunlaşma, evrim, gelişme.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "tekamül", "ornekCumle": "Tekamül tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "temenni", "kelime": "Temenni", "anlam": "Dilek, arzu.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "temenni", "ornekCumle": "Temenni tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "ulfet", "kelime": "Ülfet", "anlam": "Dostluk, alışkanlık, samimiyet.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "ülfet", "ornekCumle": "Ülfet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "umit", "kelime": "Ümit", "anlam": "Umut.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "ümit", "ornekCumle": "Ümit tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "vefa", "kelime": "Vefa", "anlam": "Sözünde durma, sevgide sebat etme.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "vefa", "ornekCumle": "Vefa tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "vicdan", "kelime": "Vicdan", "anlam": "İnsanın ahlaki değer yargısı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "vicdan", "ornekCumle": "Vicdan tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "yadigar", "kelime": "Yadigar", "anlam": "Hatıra, anı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "yadigar", "ornekCumle": "Yadigar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "zarafet", "kelime": "Zarafet", "anlam": "İncelik, naziklik.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "zarafet", "ornekCumle": "Zarafet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "zenginlik", "kelime": "Zenginlik", "anlam": "Varlık, bolluk.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "zenginlik", "ornekCumle": "Zenginlik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "aba-vakti-aba-yaba-vakti-yaba-alinir", "kelime": "Aba vakti aba, yaba vakti yaba alınır", "anlam": "Her şeyin vaktinde ve zamanında tedariki yapılmalıdır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "aba vakti aba, yaba vakti yaba alınır", "ornekCumle": "Aba vakti aba, yaba vakti yaba alınır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "ak-akce-kara-gun-icindir", "kelime": "Ak akçe kara gün içindir", "anlam": "Kazanılan paralar zor günler için biriktirilmelidir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "ak akçe kara gün içindir", "ornekCumle": "Ak akçe kara gün içindir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "damlaya-damlaya-gol-olur", "kelime": "Damlaya damlaya göl olur", "anlam": "Küçük şeyler birikerek büyük varlıklar oluşturur.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "damlaya damlaya göl olur", "ornekCumle": "Damlaya damlaya göl olur tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "el-elin-esegini-turku-cagirarak-arar", "kelime": "El elin eşeğini türkü çağırarak arar", "anlam": "Başkalarının derdi insanı kendi derdi kadar üzmez, eğlence sanılır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "el elin eşeğini türkü çağırarak arar", "ornekCumle": "El elin eşeğini türkü çağırarak arar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "gorunen-koy-kilavuz-istemez", "kelime": "Görünen köy kılavuz istemez", "anlam": "Açık olan, ortada duran durumlar için delil arama gereği yoktur.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "görünen köy kılavuz istemez", "ornekCumle": "Görünen köy kılavuz istemez tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "lafla-peynir-gemisi-yurumez", "kelime": "Lafla peynir gemisi yürümez", "anlam": "Sadece söz vererek, çalışmadan iş yapılmaz.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "lafla peynir gemisi yürümez", "ornekCumle": "Lafla peynir gemisi yürümez tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "sakla-samani-gelir-zamani", "kelime": "Sakla samanı gelir zamanı", "anlam": "Görünüşte önemsiz görülen şeyler bir gün mutlaka lazımdır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "sakla samanı gelir zamanı", "ornekCumle": "Sakla samanı gelir zamanı tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "sutten-agzi-yanan-ayrani-ufleyerek-icer", "kelime": "Sütten ağzı yanan ayranı üfleyerek içer", "anlam": "Bir kez zarara uğrayan kişi, benzer durumlarda aşırı temkinli davranır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "sütten ağzı yanan ayranı üfleyerek içer", "ornekCumle": "Sütten ağzı yanan ayranı üfleyerek içer tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "zahmetsiz-rahmet-olmaz", "kelime": "Zahmetsiz rahmet olmaz", "anlam": "Emek verilmeden başarı veya kazanç elde edilemez.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "zahmetsiz rahmet olmaz", "ornekCumle": "Zahmetsiz rahmet olmaz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "agac-yasken-egilir", "kelime": "Ağaç yaşken eğilir", "anlam": "Çocuklar küçük yaşta kolay eğitilir, yönlendirilir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "ağaç yaşken eğilir", "ornekCumle": "Ağaç yaşken eğilir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "aba-altindan-sopa-gostermek", "kelime": "Aba altından sopa göstermek", "anlam": "Açıkça korkutmayarak, üstü kapalı gözdağı vermek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "aba altından sopa göstermek", "ornekCumle": "Aba altından sopa göstermek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "etekleri-zil-calmak", "kelime": "Etekleri zil çalmak", "anlam": "Çok sevinmek, neşelenmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "etekleri zil çalmak", "ornekCumle": "Etekleri zil çalmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "goz-boyamak", "kelime": "Göz boyamak", "anlam": "Başkasını aldatmak, kandırmak, gerçekleri gizlemek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "göz boyamak", "ornekCumle": "Göz boyamak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "i-pe-un-sermek", "kelime": "İpe un sermek", "anlam": "İşi yokuşa sürmek, bahaneler üreterek işten kaçınmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "i̇pe un sermek", "ornekCumle": "İpe un sermek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "kili-kirk-yarmak", "kelime": "Kılı kırk yarmak", "anlam": "Bir işte çok titiz davranmak, en ince detayına kadar incelemek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "kılı kırk yarmak", "ornekCumle": "Kılı kırk yarmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "pireyi-deve-yapmak", "kelime": "Pireyi deve yapmak", "anlam": "Önemsiz bir olayı büyütmek, abartmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "pireyi deve yapmak", "ornekCumle": "Pireyi deve yapmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "pot-kirmak", "kelime": "Pot kırmak", "anlam": "Yersiz veya düşüncesizce bir söz söylemek, gaf yapmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "pot kırmak", "ornekCumle": "Pot kırmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "cam-devirmek", "kelime": "Çam devirmek", "anlam": "Farkında olmadan karşısındakini kıracak ya da zor durumda bırakacak söz söylemek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "çam devirmek", "ornekCumle": "Çam devirmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "sinek-avlamak", "kelime": "Sinek avlamak", "anlam": "İşsiz kalmak, iş yapamamak, müşteri olmamak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "sinek avlamak", "ornekCumle": "Sinek avlamak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "horoz-olur-gozu-coplukte-kalir", "kelime": "Horoz ölür, gözü çöplükte kalır", "anlam": "İnsan alışkanlıklarından ve zaaflarından asla vazgeçemez.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "horoz ölür, gözü çöplükte kalır", "ornekCumle": "Horoz ölür, gözü çöplükte kalır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "muazzam", "kelime": "Muazzam", "anlam": "Çok büyük, devasa, hayranlık uyandıran.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muazzam", "ornekCumle": "Muazzam tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustakim", "kelime": "Müstakim", "anlam": "Doğru yoldan ayrılmayan, dürüst.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstakim", "ornekCumle": "Müstakim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "naciz", "kelime": "Nâçiz", "anlam": "Değersiz, önemsiz (alçakgönüllülük ifadesi).", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nâçiz", "ornekCumle": "Nâçiz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutekamil", "kelime": "Mütekamil", "anlam": "Olgunlaşmış, gelişmiş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütekamil", "ornekCumle": "Mütekamil tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutereddit", "kelime": "Mütereddit", "anlam": "Kararsız, tereddüt eden.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütereddit", "ornekCumle": "Mütereddit tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "munhasiran", "kelime": "Münhasıran", "anlam": "Yalnızca, sadece.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "münhasıran", "ornekCumle": "Münhasıran tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutehassis", "kelime": "Mütehassıs", "anlam": "Uzman.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütehassıs", "ornekCumle": "Mütehassıs tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muteselsil", "kelime": "Müteselsil", "anlam": "Zincirleme, birbirine bağlı olarak sürüp giden.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müteselsil", "ornekCumle": "Müteselsil tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "musamaha", "kelime": "Müsamaha", "anlam": "Hoşgörü.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müsamaha", "ornekCumle": "Müsamaha tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muskulpesent", "kelime": "Müşkülpesent", "anlam": "Zor beğenen, titiz.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müşkülpesent", "ornekCumle": "Müşkülpesent tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "halis-muhlis", "kelime": "Halis muhlis", "anlam": "Katıksız, saf, hakiki.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "halis muhlis", "ornekCumle": "Halis muhlis tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "mecazi", "kelime": "Mecazî", "anlam": "Gerçek anlamı dışında kullanılan.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "mecazî", "ornekCumle": "Mecazî tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muessir", "kelime": "Müessir", "anlam": "Etkileyen, tesirli.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müessir", "ornekCumle": "Müessir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muktedir", "kelime": "Muktedir", "anlam": "Gücü yeten, iktidar sahibi.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muktedir", "ornekCumle": "Muktedir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muasir", "kelime": "Muasır", "anlam": "Çağdaş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muasır", "ornekCumle": "Muasır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mulhem", "kelime": "Mülhem", "anlam": "İlham olunmuş, içe doğmuş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mülhem", "ornekCumle": "Mülhem tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mulayim", "kelime": "Mülayim", "anlam": "Yumuşak huylu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mülayim", "ornekCumle": "Mülayim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustakil", "kelime": "Müstakil", "anlam": "Bağımsız, ayrı, kendine ait.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstakil", "ornekCumle": "Müstakil tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muessese", "kelime": "Müessese", "anlam": "Kurum, kuruluş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müessese", "ornekCumle": "Müessese tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukrim", "kelime": "Mükrim", "anlam": "İkram etmeyi seven, konuksever.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mükrim", "ornekCumle": "Mükrim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muskul", "kelime": "Müşkül", "anlam": "Güç, çetin, zorluk.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müşkül", "ornekCumle": "Müşkül tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutereddit-2", "kelime": "Mütereddit", "anlam": "Kararsız, çekingen, tereddütlü.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütereddit", "ornekCumle": "Mütereddit tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mumtaz-2", "kelime": "Mümtaz", "anlam": "Seçkin, ayrıcalıklı, üstün nitelikli.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mümtaz", "ornekCumle": "Mümtaz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muesses", "kelime": "Müesses", "anlam": "Kurulmuş, temeli atılmış.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müesses", "ornekCumle": "Müesses tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mueccel", "kelime": "Müeccel", "anlam": "Ertelenmiş, vadesi sonraya bırakılmış.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müeccel", "ornekCumle": "Müeccel tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustesna-2", "kelime": "Müstesna", "anlam": "İstisnai, benzersiz, eşsiz.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstesna", "ornekCumle": "Müstesna tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "musfik", "kelime": "Müşfik", "anlam": "Şefkatli, merhametli, koruyup kollayan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müşfik", "ornekCumle": "Müşfik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "munzevi", "kelime": "Münzevî", "anlam": "Toplumdan uzaklaşarak tek başına yaşayan, köşesine çekilmiş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "münzevî", "ornekCumle": "Münzevî tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutereddi", "kelime": "Mütereddî", "anlam": "Alçalmış, bozulmuş, yozlaşmış.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütereddî", "ornekCumle": "Mütereddî tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muessif", "kelime": "Müessif", "anlam": "Üzücü, teessüf gerektiren.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müessif", "ornekCumle": "Müessif tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukafat", "kelime": "Mükâfat", "anlam": "Ödül, karşılık.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mükâfat", "ornekCumle": "Mükâfat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukrim-2", "kelime": "Mükrim", "anlam": "İkram sever, konuk ağırlamaktan hoşlanan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mükrim", "ornekCumle": "Mükrim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muteessir", "kelime": "Müteessir", "anlam": "Üzülmüş, duygulanmış, müteessir olan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müteessir", "ornekCumle": "Müteessir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutefekkir-2", "kelime": "Mütefekkir", "anlam": "Düşünür, fikir ve felsefe insanı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütefekkir", "ornekCumle": "Mütefekkir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muftehir", "kelime": "Müftehir", "anlam": "Övünen, gurur duyan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müftehir", "ornekCumle": "Müftehir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "musamahakar", "kelime": "Müsamahakar", "anlam": "Hoşgörülü, anlayışlı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müsamahakar", "ornekCumle": "Müsamahakar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muntesip", "kelime": "Müntesip", "anlam": "Bir yere, bir mesleğe veya akıma bağlı olan, mensup.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müntesip", "ornekCumle": "Müntesip tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustakbel", "kelime": "Müstakbel", "anlam": "Gelecek, ileriki zaman.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstakbel", "ornekCumle": "Müstakbel tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mubeccel", "kelime": "Mübeccel", "anlam": "Yüceltilmiş, saygıdeğer, ululanmış.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mübeccel", "ornekCumle": "Mübeccel tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mudafaa", "kelime": "Müdafaa", "anlam": "Savunma, koruma.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müdafaa", "ornekCumle": "Müdafaa tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muteredditane", "kelime": "Müteredditâne", "anlam": "Kararsız bir şekilde, tereddütle.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müteredditâne", "ornekCumle": "Müteredditâne tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muheyya", "kelime": "Müheyya", "anlam": "Hazır, hazırlanmış.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müheyya", "ornekCumle": "Müheyya tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mulevves", "kelime": "Mülevves", "anlam": "Kirli, pisletilmiş, bulaşık.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mülevves", "ornekCumle": "Mülevves tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutekait", "kelime": "Mütekait", "anlam": "Emekli.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütekait", "ornekCumle": "Mütekait tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "munhal", "kelime": "Münhal", "anlam": "Boş (kadro, memuriyet vb.).", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "münhal", "ornekCumle": "Münhal tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muellif", "kelime": "Müellif", "anlam": "Yazar, eser sahibi.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müellif", "ornekCumle": "Müellif tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutemadiyen-2", "kelime": "Mütemadiyen", "anlam": "Aralıksız, sürekli olarak, durmaksızın.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütemadiyen", "ornekCumle": "Mütemadiyen tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mubasir", "kelime": "Mübaşir", "anlam": "Duruşma salonunda düzeni sağlayan adliye görevlisi.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mübaşir", "ornekCumle": "Mübaşir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutereddet", "kelime": "Mütereddet", "anlam": "Tereddüt eden, kararsız kalan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütereddet", "ornekCumle": "Mütereddet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mucerret", "kelime": "Mücerret", "anlam": "Soyut, yalnız, tek başına.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mücerret", "ornekCumle": "Mücerret tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukim", "kelime": "Mukim", "anlam": "Bir yerde oturan, ikamet eden.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukim", "ornekCumle": "Mukim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muktebes", "kelime": "Muktebes", "anlam": "Alıntı yapılmış, iktibas edilmiş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muktebes", "ornekCumle": "Muktebes tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muktedir-2", "kelime": "Muktedir", "anlam": "Gücü yeten, iş başarmaya muktedir olan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muktedir", "ornekCumle": "Muktedir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukavemet", "kelime": "Mukavemet", "anlam": "Direnç, karşı koyma gücü.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukavemet", "ornekCumle": "Mukavemet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukaddeme", "kelime": "Mukaddeme", "anlam": "Önsöz, giriş bölümü.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukaddeme", "ornekCumle": "Mukaddeme tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukaddes", "kelime": "Mukaddes", "anlam": "Kutsal, mübarek.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukaddes", "ornekCumle": "Mukaddes tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukteza", "kelime": "Mukteza", "anlam": "Gereken, icap eden, lüzumlu şey.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukteza", "ornekCumle": "Mukteza tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukayese", "kelime": "Mukayese", "anlam": "Karşılaştırma, kıyaslama.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukayese", "ornekCumle": "Mukayese tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukadderat", "kelime": "Mukadderat", "anlam": "Yazgı, kader, önceden belirlenmiş durumlar.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukadderat", "ornekCumle": "Mukadderat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukabil", "kelime": "Mukabil", "anlam": "Karşılık olarak, mukabilinde.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukabil", "ornekCumle": "Mukabil tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muazzam-2", "kelime": "Muazzam", "anlam": "Devasa, görkemli, çok büyük.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muazzam", "ornekCumle": "Muazzam tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muasir-2", "kelime": "Muasır", "anlam": "Çağdaş, asrın insanı, modern.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muasır", "ornekCumle": "Muasır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muavenet", "kelime": "Muavenet", "anlam": "Yardımlaşma, imdat etme.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muavenet", "ornekCumle": "Muavenet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhafazakar", "kelime": "Muhafazakâr", "anlam": "Geleneklerine, değerlerine bağlı kalan, tutucu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhafazakâr", "ornekCumle": "Muhafazakâr tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muallak", "kelime": "Muallak", "anlam": "Askıda kalmış, belirsiz, karara bağlanmamış.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muallak", "ornekCumle": "Muallak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhatap", "kelime": "Muhatap", "anlam": "Söz söylenen kimse, karşılıklı konuşan kişi.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhatap", "ornekCumle": "Muhatap tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhtelif", "kelime": "Muhtelif", "anlam": "Çeşitli, türlü, farklı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhtelif", "ornekCumle": "Muhtelif tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhteva", "kelime": "Muhteva", "anlam": "İçerik, bir eserin veya yazının özü.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhteva", "ornekCumle": "Muhteva tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muazzip", "kelime": "Muazzip", "anlam": "Eziyet çeken, azap içinde olan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muazzip", "ornekCumle": "Muazzip tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhayyile", "kelime": "Muhayyile", "anlam": "Hayal gücü, tasavvur yeteneği.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhayyile", "ornekCumle": "Muhayyile tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhakeme", "kelime": "Muhakeme", "anlam": "Akıl yürütme, değerlendirme, yargılama.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhakeme", "ornekCumle": "Muhakeme tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhalif", "kelime": "Muhalif", "anlam": "Aykırı düşen, karşı çıkan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhalif", "ornekCumle": "Muhalif tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muallim", "kelime": "Muallim", "anlam": "Öğretmen, eğitmen.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muallim", "ornekCumle": "Muallim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhabbet", "kelime": "Muhabbet", "anlam": "Sevgi, dostça sohbet, tatlı dil.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhabbet", "ornekCumle": "Muhabbet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhacir", "kelime": "Muhacir", "anlam": "Göçmen, yurdunu bırakıp başka yere göç eden.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhacir", "ornekCumle": "Muhacir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muzaffer", "kelime": "Muzaffer", "anlam": "Zafer kazanmış, başarı elde etmiş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muzaffer", "ornekCumle": "Muzaffer tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustear", "kelime": "Müstear", "anlam": "Takma (isim, ad).", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstear", "ornekCumle": "Müstear tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muteredditce", "kelime": "Müteredditçe", "anlam": "Şüpheci ve kararsız bir tavırla.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müteredditçe", "ornekCumle": "Müteredditçe tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mursit", "kelime": "Mürşit", "anlam": "Doğru yolu gösteren kılavuz, rehber, uyarıcı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mürşit", "ornekCumle": "Mürşit tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mecara", "kelime": "Mecâra", "anlam": "Macir, akış yeri, macera alanı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "mecâra", "ornekCumle": "Mecâra tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "ak-koyun-kara-koyun-gecidinde-belli-olur", "kelime": "Ak koyun kara koyun geçidinde belli olur", "anlam": "Bir kişinin veya durumun gerçek değeri, kritik bir iş veya sınav sırasında ortaya çıkar.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "ak koyun kara koyun geçidinde belli olur", "ornekCumle": "Ak koyun kara koyun geçidinde belli olur tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "dost-ile-ye-ic-alisveris-etme", "kelime": "Dost ile ye, iç, alışveriş etme", "anlam": "Yakın arkadaşlarla ticari ilişkilerde bulunmak anlaşmazlıklara ve dostluğun bozulmasına yol açabilir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "dost ile ye, iç, alışveriş etme", "ornekCumle": "Dost ile ye, iç, alışveriş etme tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "hamama-giren-terler", "kelime": "Hamama giren terler", "anlam": "Zor veya zahmetli bir işe girişen kimse, o işin sıkıntılarına katlanmak zorundadır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "hamama giren terler", "ornekCumle": "Hamama giren terler tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "i-ti-an-comagi-hazirla", "kelime": "İti an çomağı hazırla", "anlam": "Hakkında konuşulan kötü veya kavgacı bir kimse aniden ortaya çıkıverir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "i̇ti an çomağı hazırla", "ornekCumle": "İti an çomağı hazırla tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "mum-dibine-isik-vermez", "kelime": "Mum dibine ışık vermez", "anlam": "Bir kimse başkalarına çok faydalı olabilir ama kendi yakınlarına veya çevresine bu yardımı ulaştıramaz.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "mum dibine ışık vermez", "ornekCumle": "Mum dibine ışık vermez tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ne-dograrsan-asina-o-cikar-kasigina", "kelime": "Ne doğrarsan aşına, o çıkar kaşığına", "anlam": "İnsan dünyada ne kadar emek ve çaba harcarsa, karşılığında ancak o kadarını elde eder.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "ne doğrarsan aşına, o çıkar kaşığına", "ornekCumle": "Ne doğrarsan aşına, o çıkar kaşığına tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ruzgar-eken-firtina-bicer", "kelime": "Rüzgâr eken fırtına biçer", "anlam": "Kötülük yapan, etrafına huzursuzluk saçan kimse katbekat büyük bir bela ile karşılaşır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "rüzgâr eken fırtına biçer", "ornekCumle": "Rüzgâr eken fırtına biçer tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "samanlikta-igne-aramak", "kelime": "Samanlıkta iğne aramak", "anlam": "Son derece zor veya bulunuşu imkansız bir şeyi aramaya çalışmak.", "turu": "Atasözü / Deyim", "koken": "Türkçe", "telaffuz": "samanlıkta iğne aramak", "ornekCumle": "Samanlıkta iğne aramak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "tasima-su-ile-degirmen-donmez", "kelime": "Taşıma su ile değirmen dönmez", "anlam": "Sınırlı ve dışarıdan gelen geçici imkânlarla büyük veya sürekli bir iş yürütülemez.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "taşıma su ile değirmen dönmez", "ornekCumle": "Taşıma su ile değirmen dönmez tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "yalancinin-mumu-yatsiya-kadar-yanar", "kelime": "Yalancının mumu yatsıya kadar yanar", "anlam": "Söylenen yalanlar bir süre sonra mutlaka ortaya çıkar, gizli kalmaz.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "yalancının mumu yatsıya kadar yanar", "ornekCumle": "Yalancının mumu yatsıya kadar yanar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "abayi-yakmak", "kelime": "Abayı yakmak", "anlam": "Birine aşık olmak, tutulmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "abayı yakmak", "ornekCumle": "Abayı yakmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "bindigi-dali-kesmek", "kelime": "Bindiği dalı kesmek", "anlam": "Kendi çıkarına zarar verecek, kendi konumunu tehlikeye atacak bir davranışta bulunmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "bindiği dalı kesmek", "ornekCumle": "Bindiği dalı kesmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "cam-devirmek-2", "kelime": "Çam devirmek", "anlam": "Farkında olmadan pot kırmak, gaf yapmak, karşısındakini kıracak söz sarf etmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "çam devirmek", "ornekCumle": "Çam devirmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "dereyi-gormeden-pacalari-sivamak", "kelime": "Dereyi görmeden paçaları sıvamak", "anlam": "Ortada henüz kesin bir durum veya sonuç yokken erkenden hazırlığa veya telaşa girişmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "dereyi görmeden paçaları sıvamak", "ornekCumle": "Dereyi görmeden paçaları sıvamak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "etekleri-tutusmak", "kelime": "Etekleri tutuşmak", "anlam": "Büyük bir telaşa ve korkuya kapılmak, ne yapacağını bilememek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "etekleri tutuşmak", "ornekCumle": "Etekleri tutuşmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "firildak-gibi-donmek", "kelime": "Fırıldak gibi dönmek", "anlam": "Çıkarına göre sürekli fikir ve yön değiştirmek, güvenilmez olmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "fırıldak gibi dönmek", "ornekCumle": "Fırıldak gibi dönmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "gozden-dusmek", "kelime": "Gözden düşmek", "anlam": "Eskiden gösterilen ilgi ve sevgiyi kaybetmek, gözü dışarıda olmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "gözden düşmek", "ornekCumle": "Gözden düşmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "haddini-bilmek", "kelime": "Haddini bilmek", "anlam": "Durumunu, yetkisini ve nerede durması gerektiğini bilmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "haddini bilmek", "ornekCumle": "Haddini bilmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "i-pe-un-sermek-2", "kelime": "İpe un sermek", "anlam": "İşi yokuşa sürmek, bahaneler bularak sorumluluktan kaçınmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "i̇pe un sermek", "ornekCumle": "İpe un sermek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "kas-yapayim-derken-goz-cikarmak", "kelime": "Kaş yapayım derken göz çıkarmak", "anlam": "Bir işi düzeltmeye çalışırken durumu daha da kötüleştirmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "kaş yapayım derken göz çıkarmak", "ornekCumle": "Kaş yapayım derken göz çıkarmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "kulak-kabartmak", "kelime": "Kulak kabartmak", "anlam": "Çaktırmadan, dikkatle söylenilenleri dinlemek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "kulak kabartmak", "ornekCumle": "Kulak kabartmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "laf-ebesi-olmak", "kelime": "Laf ebesi olmak", "anlam": "Boş ve gereksiz laflarla çok konuşmak, geveze olmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "laf ebesi olmak", "ornekCumle": "Laf ebesi olmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "midemi-bulandirmak", "kelime": "Midemi bulandırmak", "anlam": "Tiksinti uyandırmak, şüphe ve huzursuzluk yaratmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "midemi bulandırmak", "ornekCumle": "Midemi bulandırmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "nallari-dikmek", "kelime": "Nalları dikmek", "anlam": "Ölmek, hayatını kaydetmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "nalları dikmek", "ornekCumle": "Nalları dikmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ocagi-sonmek", "kelime": "Ocağı sönmek", "anlam": "Bir yuvanın, ailenin dağılması, varlığını yitirmesi.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "ocağı sönmek", "ornekCumle": "Ocağı sönmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "pabuc-birakmamak", "kelime": "Pabuç bırakmamak", "anlam": "Tehditlere boyun eğmemek, korkmamak, ödün vermemek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "pabuç bırakmamak", "ornekCumle": "Pabuç bırakmamak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "puskullu-bela", "kelime": "Püsküllü bela", "anlam": "Baştan savulamayan, uğraştırıcı ve sıkıntılı durum.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "püsküllü bela", "ornekCumle": "Püsküllü bela tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "rapor-vermek", "kelime": "Rapor vermek", "anlam": "Durum hakkında resmî bilgi sunmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "rapor vermek", "ornekCumle": "Rapor vermek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "samur-kurk-olmak", "kelime": "Samur kürk olmak", "anlam": "Çok değerli ve itibarlı bir konuma gelmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "samur kürk olmak", "ornekCumle": "Samur kürk olmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "seytanin-bacagini-kirmak", "kelime": "Şeytanın bacağını kırmak", "anlam": "Uzun süredir süregelen kötü şansı veya başarısızlığı yenmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "şeytanın bacağını kırmak", "ornekCumle": "Şeytanın bacağını kırmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "tabana-kuvvet", "kelime": "Tabana kuvvet", "anlam": "Yaya olarak yürümeye devam etmek, aceleyle uzaklaşmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "tabana kuvvet", "ornekCumle": "Tabana kuvvet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "tuz-biber-ektirmek", "kelime": "Tuz biber ektirmek", "anlam": "Var olan kötü bir durumu daha da çekilmez, acı verici hale getirmek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "tuz biber ektirmek", "ornekCumle": "Tuz biber ektirmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ucu-kapali", "kelime": "Ucu kapalı", "anlam": "Kesin olmayan, netliğe kavuşmamış durum.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "ucu kapalı", "ornekCumle": "Ucu kapalı tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ustune-tuy-dikmek", "kelime": "Üstüne tüy dikmek", "anlam": "Yapılan bir hatanın ardından durumu daha da berbat edecek bir hamle yapmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "üstüne tüy dikmek", "ornekCumle": "Üstüne tüy dikmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "vur-patlasin-cal-oynasin", "kelime": "Vur patlasın çal oynasın", "anlam": "Gönlünce eğlenmek, hayatın tadını çıkarmak, hiçbir şeyi takmamak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "vur patlasın çal oynasın", "ornekCumle": "Vur patlasın çal oynasın tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ya-tutarsa-diye-dusunmek", "kelime": "Ya tutarsa diye düşünmek", "anlam": "Riskli ve gerçekleşme ihtimali düşük bir işe umut bağlanarak adım atmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "ya tutarsa diye düşünmek", "ornekCumle": "Ya tutarsa diye düşünmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "zeytinyagi-gibi-suya-cikmak", "kelime": "Zeytinyağı gibi suya çıkmak", "anlam": "Suçlu olduğu halde her seferinde üste çıkmayı başarmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "zeytinyağı gibi suya çıkmak", "ornekCumle": "Zeytinyağı gibi suya çıkmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "zevzeklik-etmek", "kelime": "Zevzeklik etmek", "anlam": "Yersiz, saçma ve boş sözler söylemek.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "zevzeklik etmek", "ornekCumle": "Zevzeklik etmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "zincire-vurulmak", "kelime": "Zincire vurulmak", "anlam": "Özgürlüğü kısıtlanmak, esir alınmak.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "zincire vurulmak", "ornekCumle": "Zincire vurulmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "zurnanin-zirt-dedigi-yer", "kelime": "Zurnanın zırt dediği yer", "anlam": "İşin en kritik, en zayıf veya en sıkıntılı noktası.", "turu": "Deyim", "koken": "Türkçe Deyim", "telaffuz": "zurnanın zırt dediği yer", "ornekCumle": "Zurnanın zırt dediği yer tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "mutesanit", "kelime": "Mütesanit", "anlam": "Dayanışma içinde olan, birbirine sıkıca bağlı, omuz omuza veren.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütesanit", "ornekCumle": "Mütesanit tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutecaviz", "kelime": "Mütecaviz", "anlam": "Saldırgan, tecavüz eden, taarruzda bulunan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütecaviz", "ornekCumle": "Mütecaviz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutemayil", "kelime": "Mütemayil", "anlam": "Eğilimi olan, meyilli, bir tarafa yönelen.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütemayil", "ornekCumle": "Mütemayil tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutekabilen", "kelime": "Mütekabilen", "anlam": "Karşılıklı olarak, mukabelede bulunarak.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütekabilen", "ornekCumle": "Mütekabilen tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muteredditane-2", "kelime": "Müteredditâne", "anlam": "Kararsız bir tutumla, çekingenlik göstererek.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müteredditâne", "ornekCumle": "Müteredditâne tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muessiriyet", "kelime": "Müessiriyet", "anlam": "Tesirlilik, etkileyicilik gücü.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müessiriyet", "ornekCumle": "Müessiriyet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutemmim", "kelime": "Mütemmim", "anlam": "Tamamlayıcı, bütünleyici parça.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütemmim", "ornekCumle": "Mütemmim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "munhasiran-2", "kelime": "Münhasıran", "anlam": "Yalnızca ve sadece bir şeye mahsus olmak üzere.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "münhasıran", "ornekCumle": "Münhasıran tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutereddi-2", "kelime": "Mütereddi", "anlam": "Ahlaken veya maddeten yozlaşmış, düşkünleşmiş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütereddi", "ornekCumle": "Mütereddi tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutekamilen", "kelime": "Mütekamilen", "anlam": "Tamamlanmış, olgunlaşmış bir biçimde.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütekamilen", "ornekCumle": "Mütekamilen tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muskulpesentlik", "kelime": "Müşkülpesentlik", "anlam": "Zor beğenme durumu, aşırı titizlik.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müşkülpesentlik", "ornekCumle": "Müşkülpesentlik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "musarunileyh", "kelime": "Müşarünileyh", "anlam": "Kendisine işaret edilen, adı geçen, anılan (saygın kişi).", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müşarünileyh", "ornekCumle": "Müşarünileyh tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "munasebetci", "kelime": "Münasebetçi", "anlam": "İlişki kurmayı seven, vesile arayan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "münasebetçi", "ornekCumle": "Münasebetçi tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mucessem", "kelime": "Mücessem", "anlam": "Somutlaşmış, cisimleşmiş, gözle görülebilir hâle gelmiş.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mücessem", "ornekCumle": "Mücessem tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustahdem", "kelime": "Müstahdem", "anlam": "Hizmetli, kapıcı, hizmet eden görevli.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstahdem", "ornekCumle": "Müstahdem tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustahak", "kelime": "Müstahak", "anlam": "Hak edilmiş, layık olunmuş (genellikle olumsuz durumlar için).", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstahak", "ornekCumle": "Müstahak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustakar", "kelime": "Müstakar", "anlam": "Kararlı, durağan, yerleşik ve sarsılmaz.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstakar", "ornekCumle": "Müstakar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustefit", "kelime": "Müstefit", "anlam": "Faydalanan, yararlanan, karlı çıkan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstefit", "ornekCumle": "Müstefit tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustehzi", "kelime": "Müstehzi", "anlam": "Alaycı, alay eden, istihza dolu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstehzi", "ornekCumle": "Müstehzi tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustesnalik", "kelime": "Müstesnalık", "anlam": "Benzersizlik, istisnai olma durumu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müstesnalık", "ornekCumle": "Müstesnalık tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "musterek", "kelime": "Müşterek", "anlam": "Ortak, birlikte paylaşılan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müşterek", "ornekCumle": "Müşterek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "musfikane", "kelime": "Müşfikane", "anlam": "Şefkatle, merhametli ve koruyucu bir tavırla.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müşfikane", "ornekCumle": "Müşfikane tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muesseselesme", "kelime": "Müesseseleşme", "anlam": "Kurumsal bir kimlik ve yapı kazanma süreci.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müesseseleşme", "ornekCumle": "Müesseseleşme tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "munhal-kadro", "kelime": "Münhal kadro", "anlam": "Boşta bulunan, atama bekleyen memuriyet yeri.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "münhal kadro", "ornekCumle": "Münhal kadro tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "muellifhane", "kelime": "Müellifhane", "anlam": "Yazara yakışır tarzda, edebi biçimde.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "müellifhane", "ornekCumle": "Müellifhane tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mutemadiyat", "kelime": "Mütemadiyat", "anlam": "Süreklilik, aralıksız devam etme hali.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mütemadiyat", "ornekCumle": "Mütemadiyat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mubaseret", "kelime": "Mübaşeret", "anlam": "Bir işe girişme, başlama.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mübaşeret", "ornekCumle": "Mübaşeret tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mucerretlik", "kelime": "Mücerretlik", "anlam": "Soyutluk durumu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mücerretlik", "ornekCumle": "Mücerretlik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukimlik", "kelime": "Mukimlik", "anlam": "Bir yerde ikamet etme hali, yerleşiklik.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukimlik", "ornekCumle": "Mukimlik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muktebesat", "kelime": "Muktebesat", "anlam": "Başka kaynaklardan yapılan alıntılar, iktibaslar.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muktebesat", "ornekCumle": "Muktebesat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukavemetli", "kelime": "Mukavemetli", "anlam": "Dirençli, dayanıklı yapıya sahip.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukavemetli", "ornekCumle": "Mukavemetli tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukaddemat", "kelime": "Mukaddemat", "anlam": "Giriş kısımları, ön hazırlıklar ve mukaddimeler.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukaddemat", "ornekCumle": "Mukaddemat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukaddesat", "kelime": "Mukaddesat", "anlam": "Uğruna can verilecek kutsal değerler, inançlar.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukaddesat", "ornekCumle": "Mukaddesat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muktezat", "kelime": "Muktezat", "anlam": "Gerekler, icaplar, lüzumlu hususlar.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muktezat", "ornekCumle": "Muktezat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukayeseli", "kelime": "Mukayeseli", "anlam": "Kıyaslamalı, karşılaştırmalı tetkik.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukayeseli", "ornekCumle": "Mukayeseli tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukadderatci", "kelime": "Mukadderatçı", "anlam": "Kaderci, her şeyi yazgıya bağlayan düşünce yapısı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukadderatçı", "ornekCumle": "Mukadderatçı tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mukabilinde", "kelime": "Mukabilinde", "anlam": "Karşılığı olarak, o niyetle.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mukabilinde", "ornekCumle": "Mukabilinde tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muazzamlik", "kelime": "Muazzamlık", "anlam": "Görkemlilik, devasa olma vasfı.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muazzamlık", "ornekCumle": "Muazzamlık tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muasirlasma", "kelime": "Muasırlaşma", "anlam": "Çağdaşlaşma, asrın seviyesine ulaşma çabası.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muasırlaşma", "ornekCumle": "Muasırlaşma tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muavenetci", "kelime": "Muavenetçi", "anlam": "Yardımlaşmayı ilke edinmiş kimse.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muavenetçi", "ornekCumle": "Muavenetçi tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhafazakarlik", "kelime": "Muhafazakarlık", "anlam": "Geleneksel değerleri koruma eğilimi.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhafazakarlık", "ornekCumle": "Muhafazakarlık tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muallaklik", "kelime": "Muallaklık", "anlam": "Belirsizlik, karara bağlanmama durumu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muallaklık", "ornekCumle": "Muallaklık tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhataplik", "kelime": "Muhataplık", "anlam": "Sorumluluk taşıyan veya karşı taraf olma durumu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhataplık", "ornekCumle": "Muhataplık tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhteviyat", "kelime": "Muhteviyat", "anlam": "Bir şeyin içindekilerin tamamı, ayrıntılı içerik.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhteviyat", "ornekCumle": "Muhteviyat tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muazziplik", "kelime": "Muazziplik", "anlam": "Eziyet çekme, sıkıntı içinde kıvranma.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muazziplik", "ornekCumle": "Muazziplik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhayyileli", "kelime": "Muhayyileli", "anlam": "Güçlü bir hayal dünyasına sahip olan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhayyileli", "ornekCumle": "Muhayyileli tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhakemeli", "kelime": "Muhakemeli", "anlam": "Sağlıklı akıl yürütebilen, mantıklı değerlendirme yapan.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhakemeli", "ornekCumle": "Muhakemeli tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhalefet-etmek", "kelime": "Muhalefet etmek", "anlam": "Alınan kararlara veya görüşlere karşı çıkmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "muhalefet etmek", "ornekCumle": "Muhalefet etmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "muallimlik", "kelime": "Muallimlik", "anlam": "Öğretmenlik mesleği, rehberlik görevi.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muallimlik", "ornekCumle": "Muallimlik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhabbetname", "kelime": "Muhabbetname", "anlam": "Sevgi ve dostluk dolu mektup.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhabbetname", "ornekCumle": "Muhabbetname tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muhacirlik", "kelime": "Muhacirlik", "anlam": "Yersiz yurtsuz kalma, göçmenlik durumu.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muhacirlik", "ornekCumle": "Muhacirlik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "muzafferiyet", "kelime": "Muzafferiyet", "anlam": "Zaferle sonuçlanma, başarı kazanma.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "muzafferiyet", "ornekCumle": "Muzafferiyet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mustear-isim", "kelime": "Müstear isim", "anlam": "Gerçek adı gizlemek için kullanılan takma ad, mahlas.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "müstear isim", "ornekCumle": "Müstear isim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "mursitlik", "kelime": "Mürşitlik", "anlam": "Doğru yolu gösteren kılavuzluk, aydınlatıcılık.", "turu": "Sözcük", "koken": "Arapça Kökenli", "telaffuz": "mürşitlik", "ornekCumle": "Mürşitlik tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "mecradan-cikmak", "kelime": "Mecradan çıkmak", "anlam": "Normal akışını kaybetmek, kontrolden çıkmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "mecradan çıkmak", "ornekCumle": "Mecradan çıkmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "akli-basinda-olmak", "kelime": "Aklı başında olmak", "anlam": "Sağlıklı düşünebilmek, olgun ve dengeli hareket etmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "aklı başında olmak", "ornekCumle": "Aklı başında olmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "akla-karayi-secmek", "kelime": "Akla karayı seçmek", "anlam": "Bir işi başarmak için çok büyük zorluklar ve zahmetler çekmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "akla karayı seçmek", "ornekCumle": "Akla karayı seçmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "alin-teri", "kelime": "Alın teri", "anlam": "Emek verilerek, dürüstçe kazanılan kazanç.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "alın teri", "ornekCumle": "Alın teri tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ates-puskurmek", "kelime": "Ateş püskürmek", "anlam": "Çok büyük bir öfkeyle sert sözler söylemek, köpürmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "ateş püskürmek", "ornekCumle": "Ateş püskürmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "bagrina-tas-basmak", "kelime": "Bağrına taş basmak", "anlam": "Büyük bir acıya, üzüntüye sabretmeye çalışmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "bağrına taş basmak", "ornekCumle": "Bağrına taş basmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "camur-atmak", "kelime": "Çamur atmak", "anlam": "Birine haksız yere suçlamada bulunmak, leke sürmeye çalışmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "çamur atmak", "ornekCumle": "Çamur atmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "cile-doldurmak", "kelime": "Çile doldurmak", "anlam": "Uzun süren zorluklu, sıkıntılı bir dönemi tamamlamak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "çile doldurmak", "ornekCumle": "Çile doldurmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "dag-basini-duman-almak", "kelime": "Dağ başını duman almak", "anlam": "Zorlukların, sorunların artması ve işlerin sarpa sarması.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "dağ başını duman almak", "ornekCumle": "Dağ başını duman almak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "dis-bilemek", "kelime": "Diş bilemek", "anlam": "Birine karşı gizli bir kin beslemek, intikam arzusu taşımak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "diş bilemek", "ornekCumle": "Diş bilemek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "etekleri-zil-calmak-2", "kelime": "Etekleri zil çalmak", "anlam": "Beklenmedik bir sevinçle taşkın bir neşe duymak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "etekleri zil çalmak", "ornekCumle": "Etekleri zil çalmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "gozden-gecirmek", "kelime": "Gözden geçirmek", "anlam": "Bir metni, durumu veya eşyayı dikkatlice inceleyip kontrol etmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "gözden geçirmek", "ornekCumle": "Gözden geçirmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "gozunu-kirpmadan", "kelime": "Gözünü kırpmadan", "anlam": "Hiç tereddüt etmeden, korkusuzca ve tehlikeyi göze alarak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "gözünü kırpmadan", "ornekCumle": "Gözünü kırpmadan tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "hakkindan-gelmek", "kelime": "Hakkından gelmek", "anlam": "Bir işin üstesinden başarıyla gelmek ya da birine hakkını bildirmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "hakkından gelmek", "ornekCumle": "Hakkından gelmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "i-cine-kurt-dusmek", "kelime": "İçine kurt düşmek", "anlam": "Bir şey hakkında şüpheye, endişeye kapılmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "i̇çine kurt düşmek", "ornekCumle": "İçine kurt düşmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "kas-goz-isaret-etmek", "kelime": "Kaş göz işaret etmek", "anlam": "Gizli anlaşmak veya bir konuda sessizce uyarıda bulunmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "kaş göz işaret etmek", "ornekCumle": "Kaş göz işaret etmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "kili-kirk-yarmak-2", "kelime": "Kılı kırk yarmak", "anlam": "Detaylar üzerinde aşırı derecede titizlenmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "kılı kırk yarmak", "ornekCumle": "Kılı kırk yarmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "lafi-agzina-tikayincaya-kadar", "kelime": "Lafı ağzına tıkayıncaya kadar", "anlam": "Konuşmasına fırsat vermemek, susturmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "lafı ağzına tıkayıncaya kadar", "ornekCumle": "Lafı ağzına tıkayıncaya kadar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "merakini-gidermek", "kelime": "Merakını gidermek", "anlam": "Bilinmeyen bir şeyi öğrenerek kafadaki soru işaretlerini silmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "merakını gidermek", "ornekCumle": "Merakını gidermek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "nefes-aldirmamak", "kelime": "Nefes aldırmamak", "anlam": "Birine sürekli baskı yapmak, rahat bırakmamak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "nefes aldırmamak", "ornekCumle": "Nefes aldırmamak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "pabucu-dama-atilmak", "kelime": "Pabucu dama atılmak", "anlam": "Eskisi kadar ilgi görmemek, gözden düşmek, kıymeti azalmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "pabucu dama atılmak", "ornekCumle": "Pabucu dama atılmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ruzgara-gore-yon-degistirmek", "kelime": "Rüzgara göre yön değiştirmek", "anlam": "Çıkarcı bir tavırla güç odaklarının peşinden gitmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "rüzgara göre yön değiştirmek", "ornekCumle": "Rüzgara göre yön değiştirmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "saman-alevi-gibi-parlamak", "kelime": "Saman alevi gibi parlamak", "anlam": "Birdenbire çok öfkelenmek ama bu öfkenin çabucak sönmesi.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "saman alevi gibi parlamak", "ornekCumle": "Saman alevi gibi parlamak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "simsekleri-uzerine-cekmek", "kelime": "Şimşekleri üzerine çekmek", "anlam": "Eleştirilerin ve tepkilerin odağında kalmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "şimşekleri üzerine çekmek", "ornekCumle": "Şimşekleri üzerine çekmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "tabanlari-yaglamak", "kelime": "Tabanları yağlamak", "anlam": "Tehlikeli bir durumdan ya da oradan hızla uzaklaşmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "tabanları yağlamak", "ornekCumle": "Tabanları yağlamak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "tuzlukla-kosmak", "kelime": "Tuzlukla koşmak", "anlam": "Her söylenen şeye hemen inanmak veya başkalarına körü körüne uymak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "tuzlukla koşmak", "ornekCumle": "Tuzlukla koşmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ununu-eleyip-elegini-asmak", "kelime": "Ununu eleyip eleğini asmak", "anlam": "Hayatındaki asıl büyük işleri tamamlayıp köşesine çekilmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "ununu eleyip eleğini asmak", "ornekCumle": "Ununu eleyip eleğini asmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "uzerine-dusmek", "kelime": "Üzerine düşmek", "anlam": "Bir konuyla veya kişiyle çok yakından ve titizlikle ilgilenmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "üzerine düşmek", "ornekCumle": "Üzerine düşmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "vakit-oldurmek", "kelime": "Vakit öldürmek", "anlam": "Boş işlerle zaman harcamak, zamanı değerlendirememek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "vakit öldürmek", "ornekCumle": "Vakit öldürmek tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "yorgan-gitti-kavga-bitti", "kelime": "Yorgan gitti, kavga bitti", "anlam": "Ortadaki temel anlaşmazlık kaynağı ortadan kalktığı için çekişmenin sona ermesi.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "yorgan gitti, kavga bitti", "ornekCumle": "Yorgan gitti, kavga bitti tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "zihni-bulandirmak", "kelime": "Zihni bulandırmak", "anlam": "Aklını karıştırmak, doğru düşünmeyi engellemek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "zihni bulandırmak", "ornekCumle": "Zihni bulandırmak tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "akil-para-ile-satilmaz", "kelime": "Akıl para ile satılmaz", "anlam": "Herkes kendi aklını kullanmak zorundadır, akıl dışarıdan satın alınamaz.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "akıl para ile satılmaz", "ornekCumle": "Akıl para ile satılmaz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "birlikte-kuvvet-dogar", "kelime": "Birlikte kuvvet doğar", "anlam": "İnsanlar güçlerini birleştirirse en zor işleri bile başarabilirler.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "birlikte kuvvet doğar", "ornekCumle": "Birlikte kuvvet doğar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "carsambanin-gelisi-persembeden-bellidir", "kelime": "Çarşambanın gelişi perşembeden bellidir", "anlam": "Bir olayın nereye varacağı, önceden gösterdiği belirtilerden anlaşılır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "çarşambanın gelişi perşembeden bellidir", "ornekCumle": "Çarşambanın gelişi perşembeden bellidir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "dost-kara-gunde-belli-olur", "kelime": "Dost kara günde belli olur", "anlam": "Gerçek dost, insan sıkıntıdayken ve yardıma muhtaçken yanındaandır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "dost kara günde belli olur", "ornekCumle": "Dost kara günde belli olur tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "erken-kalkan-yol-alir", "kelime": "Erken kalkan yol alır", "anlam": "İşine erken başlayan ve zamanında davranan kimse başarılı olur.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "erken kalkan yol alır", "ornekCumle": "Erken kalkan yol alır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "gulu-seven-dikenine-katlanir", "kelime": "Gülü seven dikenine katlanır", "anlam": "Sevilen bir şeyin veya kişinin getirdiği sıkıntılara sabredilir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "gülü seven dikenine katlanır", "ornekCumle": "Gülü seven dikenine katlanır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "hazira-dag-dayanmaz", "kelime": "Hazıra dağ dayanmaz", "anlam": "Çalışmadan, sadece var olanı harcayarak yaşayanların serveti tükenir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "hazıra dağ dayanmaz", "ornekCumle": "Hazıra dağ dayanmaz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "i-yilik-eden-iyilik-bulur", "kelime": "İyilik eden iyilik bulur", "anlam": "Karşılıksız yapılan iyilikler bir gün mutlaka sahibine döner.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "i̇yilik eden iyilik bulur", "ornekCumle": "İyilik eden iyilik bulur tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "korle-yatan-sasi-kalkar", "kelime": "Körle yatan şaşı kalkar", "anlam": "Kötü huylu veya bilgisiz insanlarla arkadaşlık edenler onların kötü alışkanlıklarını kaparlar.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "körle yatan şaşı kalkar", "ornekCumle": "Körle yatan şaşı kalkar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ne-ekersen-onu-bicersin", "kelime": "Ne ekersen onu biçersin", "anlam": "Dünyada nasıl davranırsanız, karşılığında da aynısını görürsünüz.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "ne ekersen onu biçersin", "ornekCumle": "Ne ekersen onu biçersin tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "sakinandan-gozu-cop-batar", "kelime": "Sakınandan gözü çöp batar", "anlam": "Bir şeyden aşırı derecede sakınan ve korkan kişinin başına tam da o korktuğu gelir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "sakınandan gözü çöp batar", "ornekCumle": "Sakınandan gözü çöp batar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "tas-yerinde-agirdir", "kelime": "Taş yerinde ağırdır", "anlam": "Her insan kendi memleketinde veya kendi yerinde saygı görür ve değerlidir.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "taş yerinde ağırdır", "ornekCumle": "Taş yerinde ağırdır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Divânü Lügati't-Türk & Karahanlı Dönemi"}, {"id": "ac-koyun-kurt-gibi-saldirir", "kelime": "Aç koyun kurt gibi saldırır", "anlam": "Uzun süre mahrumiyet yaşayan kimse fırsat bulduğunda hırsla saldırır.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "aç koyun kurt gibi saldırır", "ornekCumle": "Aç koyun kurt gibi saldırır tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "dertsiz-bas-hamamda-bellidir", "kelime": "Dertsiz baş hamamda bellidir", "anlam": "İnsanın derdi tasası olmadığını huzurlu halinden anlamak mümkündür.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "dertsiz baş hamamda bellidir", "ornekCumle": "Dertsiz baş hamamda bellidir tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "goz-gordugunu-ister", "kelime": "Göz gördüğünü ister", "anlam": "İnsan hoşuna giden, gördüğü ve beğendiği şeylere sahip olmak ister.", "turu": "Atasözü", "koken": "Türk Atasözü", "telaffuz": "göz gördüğünü ister", "ornekCumle": "Göz gördüğünü ister tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "afitap", "kelime": "Afitap", "anlam": "Güneş gibi parlayan, çok güzel kadın.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "afitap", "ornekCumle": "Afitap ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "bicare", "kelime": "Bîçare", "anlam": "Çaresiz, zavallı, kimsesiz.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "bîçare", "ornekCumle": "Bîçare ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "cumle", "kelime": "Cümle", "anlam": "Hepsi, bütün, tamamı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "cümle", "ornekCumle": "Cümle ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "cin", "kelime": "Çın", "anlam": "Doğru, hakiki, gerçek.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "çın", "ornekCumle": "Çın ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "dilfigar", "kelime": "Dilfigâr", "anlam": "Yüreği yaralı, gönlü yaralı kimse.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "dilfigâr", "ornekCumle": "Dilfigâr ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "efsun", "kelime": "Efsun", "anlam": "Büyü, sihir, tılsım.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "efsun", "ornekCumle": "Efsun ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "fecr", "kelime": "Fecr", "anlam": "Tan vakti, sabah aydınlığı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "fecr", "ornekCumle": "Fecr ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "gubari", "kelime": "Gubarî", "anlam": "Çok küçük, ince yazı türü (hat sanatında).", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "gubarî", "ornekCumle": "Gubarî ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "havas", "kelime": "Havas", "anlam": "Seçkinler sınıfı, bilginler ve devlet ileri gelenleri.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "havas", "ornekCumle": "Havas ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "itri", "kelime": "Itrî", "anlam": "Güzel kokuyla ilgili, mis kokulu.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "itrî", "ornekCumle": "Itrî ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "jale", "kelime": "Jale", "anlam": "Çiy tanesi, kırağı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "jale", "ornekCumle": "Jale ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "kande", "kelime": "Kande", "anlam": "Nerede, nereye (eski Türkçe soru zamiri).", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "kande", "ornekCumle": "Kande ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "lal-u-guher", "kelime": "Lal-ü güher", "anlam": "İnci ve mücevherler, değerli sözler.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "lal-ü güher", "ornekCumle": "Lal-ü güher ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "nihan", "kelime": "Nihan", "anlam": "Gizli, saklı, gözle görülmeyen.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nihan", "ornekCumle": "Nihan ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "otag", "kelime": "Otağ", "anlam": "Büyük ve süslü çadır, padişah çadırı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "otağ", "ornekCumle": "Otağ ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "purnur", "kelime": "Pürnur", "anlam": "Işık dolu, baştan başa aydınlık.", "turu": "Sözcük", "koken": "Arapça / Farsça", "telaffuz": "pürnur", "ornekCumle": "Pürnur ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "rucu", "kelime": "Rücu", "anlam": "Geri dönme, sözünden veya kararından vazgeçme.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "rücu", "ornekCumle": "Rücu ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "selsebil", "kelime": "Selsebil", "anlam": "Cennette olduğuna inanılan tatlı ve akarsu, kolayca akan.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "selsebil", "ornekCumle": "Selsebil ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "suh", "kelime": "Şûh", "anlam": "Neşeli, serbest hareket eden, cilveli.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "şûh", "ornekCumle": "Şûh ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "tazim", "kelime": "Tazim", "anlam": "Saygı sunma, ululama.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "tazim", "ornekCumle": "Tazim ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "uryan", "kelime": "Uryan", "anlam": "Çıplak, soyunuk.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "uryan", "ornekCumle": "Uryan ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "uftade", "kelime": "Üftade", "anlam": "Düşkün, tutkun, aşık.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "üftade", "ornekCumle": "Üftade ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "vaveyla", "kelime": "Vaveyla", "anlam": "Koprulan çığlık, feryat, kopan gürültü.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "vaveyla", "ornekCumle": "Vaveyla ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "yegane", "kelime": "Yegâne", "anlam": "Bir tanecik, eşsiz, benzeri olmayan.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "yegâne", "ornekCumle": "Yegâne ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "zahir", "kelime": "Zahir", "anlam": "Açık, ortada görünen, bellibaşlı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "zahir", "ornekCumle": "Zahir ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "zulal", "kelime": "Zülâl", "anlam": "Saf, berrak, tatlı su.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "zülâl", "ornekCumle": "Zülâl ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "eshab", "kelime": "Eshab", "anlam": "Arkadaşlar, yarenler.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "eshab", "ornekCumle": "Eshab ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "fusun", "kelime": "Füsun", "anlam": "Büyü, büyüleyici güzellik.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "füsun", "ornekCumle": "Füsun ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "gul", "kelime": "Gûl", "anlam": "Gül çiçeği, efsanevi yaratık (gul).", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "gûl", "ornekCumle": "Gûl ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "heveskar", "kelime": "Heveskar", "anlam": "Hevesli, istekli kimse.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "heveskar", "ornekCumle": "Heveskar ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "i-ltimas", "kelime": "İltimas", "anlam": "Kayırma, tutma, ayrıcalık tanıma.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "i̇ltimas", "ornekCumle": "İltimas ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "kevkeb", "kelime": "Kevkeb", "anlam": "Yıldız, gezegen.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "kevkeb", "ornekCumle": "Kevkeb ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "letafet", "kelime": "Letafet", "anlam": "Güzellik, hoşluk, incelik.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "letafet", "ornekCumle": "Letafet ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "nigarhane", "kelime": "Nigarhane", "anlam": "Resim galerisi, güzel yüzlülerin bulunduğu yer.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nigarhane", "ornekCumle": "Nigarhane ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "payidar", "kelime": "Payidar", "anlam": "Sonsuza dek yaşayacak olan, kalıcı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "payidar", "ornekCumle": "Payidar ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "rehnuma", "kelime": "Rehnüma", "anlam": "Yol gösteren, kılavuz, rehber.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "rehnüma", "ornekCumle": "Rehnüma ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "serap", "kelime": "Serap", "anlam": "Çölde görülen yanılsama, serap.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "serap", "ornekCumle": "Serap ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "sebnem", "kelime": "Şebnem", "anlam": "Çiy, yapraklar üzerindeki su damlası.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "şebnem", "ornekCumle": "Şebnem ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "tahayyul", "kelime": "Tahayyül", "anlam": "Hayal etme, zihinde canlandırma.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "tahayyül", "ornekCumle": "Tahayyül ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "ukde", "kelime": "Ukde", "anlam": "Düğüm, içte kalan çözülmemiş gam veya sorun.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "ukde", "ornekCumle": "Ukde ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "ahd-u-misak", "kelime": "Ahd ü misak", "anlam": "Yemin ve sözleşme, ant.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "ahd ü misak", "ornekCumle": "Ahd ü misak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "bihus", "kelime": "Bihuş", "anlam": "Kendinden geçmiş, şaşkın, baygın.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "bihuş", "ornekCumle": "Bihuş ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "abidevi", "kelime": "Abidevi", "anlam": "Anıt niteliğinde, çok büyük ve kalıcı.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "abidevi", "ornekCumle": "Abidevi ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "bedbin", "kelime": "Bedbin", "anlam": "Kötümser, her şeyi karanlık gören.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "bedbin", "ornekCumle": "Bedbin ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "cihannuma", "kelime": "Cihannüma", "anlam": "Dünyayı gösteren yer, yüksek seyir terası.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "cihannüma", "ornekCumle": "Cihannüma ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "cerag", "kelime": "Çerağ", "anlam": "Işık, kandil, mum.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "çerağ", "ornekCumle": "Çerağ ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Göktürkçe İzleri ve Eski Türkçe"}, {"id": "efrad", "kelime": "Efrad", "anlam": "Fertler, bireyler, üyeler.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "efrad", "ornekCumle": "Efrad ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "fusunkar", "kelime": "Füsunkar", "anlam": "Büyüleyici, sihirli.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "füsunkar", "ornekCumle": "Füsunkar ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "hakir", "kelime": "Hakir", "anlam": "Değersiz, hor görülen.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "hakir", "ornekCumle": "Hakir ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "itristan", "kelime": "Itristan", "anlam": "Güzel kokulu bahçe.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "itristan", "ornekCumle": "Itristan ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "i-stisare", "kelime": "İstişare", "anlam": "Danışma, fikir alışverişinde bulunma.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "i̇stişare", "ornekCumle": "İstişare ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "jurnalci", "kelime": "Jurnalci", "anlam": "İhbarcı, gizli bilgi taşıyan.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "jurnalci", "ornekCumle": "Jurnalci ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "kulliye", "kelime": "Külliye", "anlam": "Bir cami etrafında kurulmuş binalar topluluğu.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "külliye", "ornekCumle": "Külliye ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "lisan-i-munasip", "kelime": "Lisan-ı münasip", "anlam": "Uygun ve kırıcı olmayan bir dil.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "lisan-ı münasip", "ornekCumle": "Lisan-ı münasip ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "nefisperest", "kelime": "Nefisperest", "anlam": "Nefsine düşkün, zevk düşkünü kimse.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "nefisperest", "ornekCumle": "Nefisperest ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "odalik", "kelime": "Odalık", "anlam": "Eski saraylarda cariye.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "odalık", "ornekCumle": "Odalık ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "pervasiz", "kelime": "Pervasız", "anlam": "Korkusuz, çekinmeden hareket eden.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "pervasız", "ornekCumle": "Pervasız ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "rumuz", "kelime": "Rumuz", "anlam": "Gizli simge, mahlas, işaret.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "rumuz", "ornekCumle": "Rumuz ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "sulelenmek", "kelime": "Şulelenmek", "anlam": "Alevlenmek, parlamak.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "şulelenmek", "ornekCumle": "Şulelenmek ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "tarihselci", "kelime": "Tarihselci", "anlam": "Olayları kendi dönemi içinde değerlendiren.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "tarihselci", "ornekCumle": "Tarihselci ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "ulema", "kelime": "Ulema", "anlam": "Alimler, din ve fen bilginleri.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "ulema", "ornekCumle": "Ulema ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "uryan-bu-an", "kelime": "Üryan bu an", "anlam": "Çıplak gerçeklik anı.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "üryan bu an", "ornekCumle": "Üryan bu an ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "vefaakar", "kelime": "Vefaakar", "anlam": "Vefalı, sözünün eri.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "vefaakar", "ornekCumle": "Vefaakar ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "yadigar-i-cihan", "kelime": "Yadigar-ı cihan", "anlam": "Dünyaya bırakılan hatıra.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "yadigar-ı cihan", "ornekCumle": "Yadigar-ı cihan ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "zaruret", "kelime": "Zaruret", "anlam": "Zorunluluk, yoksulluk hali.", "turu": "Kadim Kelime", "koken": "Osmanlıca / Türkçe", "telaffuz": "zaruret", "ornekCumle": "Zaruret ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Divan Edebiyatı ve Tasavvuf"}, {"id": "ayak-diremek", "kelime": "Ayak diremek", "anlam": "Bir konuda ısrarcı olmak, geri adım atmamak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "ayak diremek", "ornekCumle": "Ayak diremek ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "can-atmak", "kelime": "Can atmak", "anlam": "Bir şeyi yapmayı çok istemek, sabırsızlanmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "can atmak", "ornekCumle": "Can atmak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "corbada-tuzu-olmak", "kelime": "Çorbada tuzu olmak", "anlam": "Küçük de olsa bir işe katkı sağlamak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "çorbada tuzu olmak", "ornekCumle": "Çorbada tuzu olmak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "disinden-tirnagindan-artirmak", "kelime": "Dişinden tırnağından artırmak", "anlam": "Büyük fedakarlıklar yaparak kıt kanaat birikim yapmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "dişinden tırnağından artırmak", "ornekCumle": "Dişinden tırnağından artırmak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "gozu-donmek", "kelime": "Gözü dönmek", "anlam": "Öfkeden veya hırstan ne yaptığını bilmez hale gelmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "gözü dönmek", "ornekCumle": "Gözü dönmek ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "hafife-almak", "kelime": "Hafife almak", "anlam": "Bir durumu veya kişiyi önemsiz saymak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "hafife almak", "ornekCumle": "Hafife almak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "tuz-biber-ekmek", "kelime": "Tuz biber ekmek", "anlam": "Kötü durumu daha da kötüleştirmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "tuz biber ekmek", "ornekCumle": "Tuz biber ekmek ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "ufku-acilmak", "kelime": "Ufku açılmak", "anlam": "Vizyonu genişlemek, dünyayı daha iyi kavramak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "ufku açılmak", "ornekCumle": "Ufku açılmak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "yolu-acilmak", "kelime": "Yolu açılmak", "anlam": "Önündeki engellerin kalkması, işlerinin kolaylaşması.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "yolu açılmak", "ornekCumle": "Yolu açılmak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "zihni-acilmak", "kelime": "Zihni açılmak", "anlam": "Anlama ve kavrama yeteneğinin artması.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "zihni açılmak", "ornekCumle": "Zihni açılmak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "acik-kapi-birakmak", "kelime": "Açık kapı bırakmak", "anlam": "İleride uzlaşabilmek veya geri dönebilmek için bir imkan tanımak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "açık kapı bırakmak", "ornekCumle": "Açık kapı bırakmak ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "basi-goge-ermek", "kelime": "Başı göğe ermek", "anlam": "Çok büyük bir sevinç yaşamak, gururlanmak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "başı göğe ermek", "ornekCumle": "Başı göğe ermek ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "cana-minnet-bilmek", "kelime": "Cana minnet bilmek", "anlam": "Sunulan zoraki bir durumu veya fırsatı memnuniyetle kabul etmek.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "cana minnet bilmek", "ornekCumle": "Cana minnet bilmek ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}, {"id": "i-cine-sinmemek", "kelime": "İçine sinmemek", "anlam": "Bir durumdan tam anlamıyla tatmin olmamak, şüphe duymak.", "turu": "Deyim / Tabir", "koken": "Türkçe", "telaffuz": "i̇çine sinmemek", "ornekCumle": "İçine sinmemek ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır.", "donem": "Anadolu Ağzı ve Halk Deyimleri"}];
+
+    // 5 HARFLİ KELİME AVI HAVUZU
+    const WORDLE_HAVUZU = [{"kelime": "NIGAR", "orijinal": "Nigar", "anlam": "Resim, güzel yüzlü sevgili.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Nigar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "ZÜPPE", "orijinal": "Züppe", "anlam": "Görgü kurallarını yanlış veya aşırı uygulayan, yapmacık kimse.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Züppe tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "GUBAR", "orijinal": "Gubar", "anlam": "Toz, toprak.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Gubar tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "AHENK", "orijinal": "Ahenk", "anlam": "Uyum, düzen.", "donem": "Göktürkçe İzleri ve Eski Türkçe", "ornekCumle": "Ahenk tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "ZINET", "orijinal": "Zînet", "anlam": "Süs, ziynet eşyası.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Zînet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "İCLAL", "orijinal": "İclal", "anlam": "Saygı göstergesinde bulunma, ululama.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "İclal tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "İLLET", "orijinal": "İllet", "anlam": "Hastalık, sebep, kusur.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "İllet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "NEFIS", "orijinal": "Nefis", "anlam": "Öz, can, hoş, güzel.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Nefis tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "ÜLFET", "orijinal": "Ülfet", "anlam": "Dostluk, alışkanlık, samimiyet.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Ülfet tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "NAÇIZ", "orijinal": "Nâçiz", "anlam": "Değersiz, önemsiz (alçakgönüllülük ifadesi).", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Nâçiz tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "MUKIM", "orijinal": "Mukim", "anlam": "Bir yerde oturan, ikamet eden.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Mukim tabiri, edebiyatımızda ve gündelik hayatımızda lisanın zarafetini aksettirir."}, {"kelime": "CÜMLE", "orijinal": "Cümle", "anlam": "Hepsi, bütün, tamamı.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Cümle ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "EFSUN", "orijinal": "Efsun", "anlam": "Büyü, sihir, tılsım.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Efsun ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "HAVAS", "orijinal": "Havas", "anlam": "Seçkinler sınıfı, bilginler ve devlet ileri gelenleri.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Havas ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "KANDE", "orijinal": "Kande", "anlam": "Nerede, nereye (eski Türkçe soru zamiri).", "donem": "Göktürkçe İzleri ve Eski Türkçe", "ornekCumle": "Kande ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "NIHAN", "orijinal": "Nihan", "anlam": "Gizli, saklı, gözle görülmeyen.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Nihan ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "TAZIM", "orijinal": "Tazim", "anlam": "Saygı sunma, ululama.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Tazim ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "URYAN", "orijinal": "Uryan", "anlam": "Çıplak, soyunuk.", "donem": "Göktürkçe İzleri ve Eski Türkçe", "ornekCumle": "Uryan ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "ZAHIR", "orijinal": "Zahir", "anlam": "Açık, ortada görünen, bellibaşlı.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Zahir ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "ZÜLAL", "orijinal": "Zülâl", "anlam": "Saf, berrak, tatlı su.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Zülâl ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "ESHAB", "orijinal": "Eshab", "anlam": "Arkadaşlar, yarenler.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Eshab ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "FÜSUN", "orijinal": "Füsun", "anlam": "Büyü, büyüleyici güzellik.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Füsun ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "SERAP", "orijinal": "Serap", "anlam": "Çölde görülen yanılsama, serap.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Serap ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "BIHUŞ", "orijinal": "Bihuş", "anlam": "Kendinden geçmiş, şaşkın, baygın.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Bihuş ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "ÇERAĞ", "orijinal": "Çerağ", "anlam": "Işık, kandil, mum.", "donem": "Göktürkçe İzleri ve Eski Türkçe", "ornekCumle": "Çerağ ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "EFRAD", "orijinal": "Efrad", "anlam": "Fertler, bireyler, üyeler.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Efrad ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "HAKIR", "orijinal": "Hakir", "anlam": "Değersiz, hor görülen.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Hakir ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "RUMUZ", "orijinal": "Rumuz", "anlam": "Gizli simge, mahlas, işaret.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Rumuz ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "ULEMA", "orijinal": "Ulema", "anlam": "Alimler, din ve fen bilginleri.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Ulema ifadesi, kadim dilimizin zarif inceliklerini ve zenginliğini yansıtır."}, {"kelime": "LÜGAT", "orijinal": "Lügat", "anlam": "Sözlük, kelime hazinesi, lisan.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Eski lügatleri karıştırdıkça dilimizin asaletine bir kez daha hayran kalırdı."}, {"kelime": "SABIR", "orijinal": "Sabır", "anlam": "Zorluklar karşısında metanet ve sükunet gösterme erdemi.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Sabır acıdır lakin meyvesi tatlıdır."}, {"kelime": "FİKİR", "orijinal": "Fikir", "anlam": "Düşünce, mülahaza, zihinde doğan tasavvur.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Köklü bir fikir, çağları aşarak istikbale rehber olur."}, {"kelime": "KEREM", "orijinal": "Kerem", "anlam": "Cömertlik, asalet, lütuf ve ihsan.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Kerem sahibi insanlar cemiyete daima huzur ve emniyet aşılar."}, {"kelime": "KADER", "orijinal": "Kader", "anlam": "Yazgı, takdir, ezelî ölçü ve nizam.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Kaderin cilvesi onları yıllar sonra aynı kadim şehirde buluşturdu."}, {"kelime": "CİHAN", "orijinal": "Cihan", "anlam": "Dünya, alem, kainat.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Bütün cihan bir araya gelse hakikatin ışığını söndüremez."}, {"kelime": "SEVDA", "orijinal": "Sevda", "anlam": "Aşk, tutku, derin gönül bağlılığı.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Yüreğinde taşıdığı memleket sevdası ona her türlü meşakkati unutturuyordu."}, {"kelime": "ERDEM", "orijinal": "Erdem", "anlam": "Fazilet, ahlaki üstünlük, doğruluk.", "donem": "Göktürkçe İzleri ve Eski Türkçe", "ornekCumle": "Kadim bilgeler insanı yücelten en yüce değerin erdem olduğunu söyler."}, {"kelime": "KUTLU", "orijinal": "Kutlu", "anlam": "Uğurlu, bereketli, mübarek, kutsal.", "donem": "Göktürkçe İzleri ve Eski Türkçe", "ornekCumle": "Bu kutlu topraklarda bin yıldır kardeşlik ve barış hüküm sürmektedir."}, {"kelime": "HAMUŞ", "orijinal": "Hâmûş", "anlam": "Suskun, sessiz, susmuş (Mevlevilikte dervişler için de kullanılır).", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Gönül gözü açılan arifler, lüzumsuz lakırdı yerine hâmûş kalmayı tercih ederler."}, {"kelime": "BASAR", "orijinal": "Basar", "anlam": "Görme duyusu, basiret ve içsel kavrayış.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Sadece gözle değil basar ve basiretle bakmak hakikati aşikar eder."}, {"kelime": "KAMER", "orijinal": "Kamer", "anlam": "Ay, gökyüzündeki mehtap.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Gecenin zifiri karanlığında kamer bir kandil gibi parıldıyordu."}, {"kelime": "GÜZİN", "orijinal": "Güzin", "anlam": "Seçilmiş, seçkin, mümtaz.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Dönemin en güzin ediplerinin toplandığı bu edebi meclis adeta bir akademiydi."}, {"kelime": "NESİL", "orijinal": "Nesil", "anlam": "Kuşak, zürriyet, çağdaş insan topluluğu.", "donem": "Divan Edebiyatı ve Tasavvuf", "ornekCumle": "Kadim kelimeleri yeni nesillere aktarmak lisanımızın bekası için elzemdir."}];
+
+    // GÜNÜN KELİMESİ
+    const GUNUN_KELIMESI = KELIMELER[0];
+
+    // UYGULAMA DURUMU
+    let aktifSekme = 'sozluk';
+    let aramaMetni = '';
+    let seciliKategori = 'tumu';
+    let seciliDonem = 'Tüm Dönemler';
+    let gorunenLimit = 24;
+    let filtrelenmisKelimeler = [...KELIMELER];
+    let favoriler = [];
+    try {
+      favoriler = JSON.parse(localStorage.getItem('kadim_favoriler') || '[]');
+    } catch(e) { favoriler = []; }
+
+    let aktifDetayKelime = null;
+
+    // TÜRKÇE SESLENDİRME (Web Speech API)
+    function seslendir(metin) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(metin);
+      u.lang = 'tr-TR';
+      u.rate = 0.9;
+      u.pitch = 1.0;
+      window.speechSynthesis.speak(u);
+    }
+
+    // SEKME DEĞİŞTİRME
+    function sekmeyiDegistir(sekme) {
+      aktifSekme = sekme;
+      const sozlukSec = document.getElementById('section-sozluk');
+      const wordleSec = document.getElementById('section-wordle');
+      const testSec = document.getElementById('section-test');
+
+      sozlukSec.classList.add('hidden');
+      wordleSec.classList.add('hidden');
+      testSec.classList.add('hidden');
+
+      const btnSozluk = document.getElementById('nav-btn-sozluk');
+      const btnWordle = document.getElementById('nav-btn-wordle');
+      const btnTest = document.getElementById('nav-btn-test');
+
+      [btnSozluk, btnWordle, btnTest].forEach(b => {
+        b.className = "flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold text-[#3E5246] hover:text-[#1E3B2E] dark:text-[#A7B9AF] dark:hover:text-[#E2EBE5] transition-all";
+      });
+
+      if (sekme === 'sozluk') {
+        sozlukSec.classList.remove('hidden');
+        btnSozluk.className = "flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-[#2D6A4F] text-[#FAF8F3] dark:bg-[#3E8E6B] dark:text-[#0F1712] transition-all";
+      } else if (sekme === 'wordle') {
+        wordleSec.classList.remove('hidden');
+        btnWordle.className = "flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-[#2D6A4F] text-[#FAF8F3] dark:bg-[#3E8E6B] dark:text-[#0F1712] transition-all";
+        if (!wordleHedef) wordleBaslat();
+      } else if (sekme === 'test') {
+        testSec.classList.remove('hidden');
+        btnTest.className = "flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold bg-[#2D6A4F] text-[#FAF8F3] dark:bg-[#3E8E6B] dark:text-[#0F1712] transition-all";
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // SÖZLÜK FİLTRELEME & LİSTELEME
+    function filtreUygula() {
+      const q = aramaMetni.toLocaleLowerCase('tr-TR').trim();
+      filtrelenmisKelimeler = KELIMELER.filter(k => {
+        // Metin araması
+        const eslesme = !q || 
+          k.kelime.toLocaleLowerCase('tr-TR').includes(q) ||
+          k.anlam.toLocaleLowerCase('tr-TR').includes(q) ||
+          k.turu.toLocaleLowerCase('tr-TR').includes(q) ||
+          (k.donem && k.donem.toLocaleLowerCase('tr-TR').includes(q));
+
+        if (!eslesme) return false;
+
+        // Kategori filtresi
+        if (seciliKategori === 'favoriler' && !favoriler.includes(k.id)) return false;
+        if (seciliKategori === 'atasozleri' && !k.turu.includes('Atasözü')) return false;
+        if (seciliKategori === 'deyimler' && !(k.turu.includes('Deyim') || k.turu.includes('Tabir') || k.turu.includes('İfade') || k.turu.includes('Terim'))) return false;
+        if (seciliKategori === 'kelimeler' && (k.turu.includes('Deyim') || k.turu.includes('Atasözü') || k.turu.includes('Tabir') || k.turu.includes('İfade'))) return false;
+
+        // Dönem filtresi
+        if (seciliDonem !== 'Tüm Dönemler' && k.donem !== seciliDonem) return false;
+
+        return true;
+      });
+
+      // Günün kelimesi alanı gizleme/gösterme
+      const gkAlani = document.getElementById('gunun-kelimesi-alani');
+      if (aramaMetni || seciliKategori !== 'tumu' || seciliDonem !== 'Tüm Dönemler') {
+        gkAlani.classList.add('hidden');
+      } else {
+        gkAlani.classList.remove('hidden');
+      }
+
+      kartlariListele();
+    }
+
+    function kartlariListele() {
+      const grid = document.getElementById('kelimeler-grid');
+      const bosDurum = document.getElementById('bos-durum');
+      const dahaFazlaAlani = document.getElementById('daha-fazla-alani');
+      const sayac = document.getElementById('liste-sayac');
+
+      grid.innerHTML = '';
+      sayac.textContent = `${filtrelenmisKelimeler.length} kayıt arasından ${Math.min(gorunenLimit, filtrelenmisKelimeler.length)} gösteriliyor`;
+
+      if (filtrelenmisKelimeler.length === 0) {
+        grid.classList.add('hidden');
+        bosDurum.classList.remove('hidden');
+        dahaFazlaAlani.classList.add('hidden');
+        return;
+      }
+
+      grid.classList.remove('hidden');
+      bosDurum.classList.add('hidden');
+
+      const parca = filtrelenmisKelimeler.slice(0, gorunenLimit);
+      parca.forEach(k => {
+        const isFav = favoriler.includes(k.id);
+        const card = document.createElement('article');
+        card.className = "group relative flex flex-col justify-between rounded-xl border border-[#E3DDCF] bg-[#FAF8F3] p-5 sm:p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#CBD5C0] hover:shadow-md cursor-pointer dark:border-[#28382F] dark:bg-[#18231C] dark:hover:border-[#3E5C49]";
+        card.onclick = () => detayAc(k);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 text-xs text-[#5C6E64] dark:text-[#8E9F96] mb-3">
+              <div class="flex flex-wrap items-center gap-1.5 font-medium">
+                <span>${k.turu}</span>
+                <span>·</span>
+                <span>${k.koken}</span>
+                ${k.donem ? `<span class="rounded bg-[#E8F0EB] px-1.5 py-0.5 text-[10px] text-[#204E39] dark:bg-[#1E2E24] dark:text-[#8CD0AE]">${k.donem}</span>` : ''}
+              </div>
+              <button onclick="event.stopPropagation(); favoriTetikle('${k.id}')" class="text-sm p-1 hover:text-[#C95A3F] transition-colors" title="Favorilere ekle/çıkar">
+                ${isFav ? '❤️' : '🤍'}
+              </button>
+            </div>
+            <div class="mb-2">
+              <h3 class="font-serif text-2xl font-bold tracking-tight text-[#162D23] group-hover:text-[#2D6A4F] dark:text-[#E8F1EC] dark:group-hover:text-[#88D4AB] transition-colors">
+                ${k.kelime}
+              </h3>
+              ${k.telaffuz ? `<p class="font-serif text-xs italic text-[#52796F] dark:text-[#8AA39B]">[${k.telaffuz}]</p>` : ''}
+            </div>
+            <p class="text-sm leading-relaxed text-[#2C3F34] font-medium dark:text-[#D1DFD7] line-clamp-3">
+              ${k.anlam}
+            </p>
+            <div class="mt-4 border-t border-[#EAE4D7] pt-3 dark:border-[#27352D]">
+              <p class="font-serif text-xs italic text-[#4F6357] dark:text-[#A7B9AF] line-clamp-2">
+                "${k.ornekCumle}"
+              </p>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center justify-between pt-2 text-xs">
+            <button onclick="event.stopPropagation(); seslendir('${k.kelime}. Anlamı: ${k.anlam.replace(/'/g, "\\'")}')" class="flex items-center gap-1.5 rounded-full border border-[#CBD5C0] bg-[#FAF8F3] px-3 py-1 font-medium text-[#2D6A4F] hover:bg-[#EBF2ED] transition-colors dark:border-[#334639] dark:bg-[#1D2921] dark:text-[#88D4AB]">
+              🔊 Dinle
+            </button>
+            <span class="text-[11px] text-[#7A8E83] dark:text-[#6F8377] group-hover:text-[#2D6A4F]">Ayrıntılar &rarr;</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      if (gorunenLimit < filtrelenmisKelimeler.length) {
+        dahaFazlaAlani.classList.remove('hidden');
+      } else {
+        dahaFazlaAlani.classList.add('hidden');
+      }
+    }
+
+    function dahaFazlaGoster() {
+      gorunenLimit += 24;
+      kartlariListele();
+    }
+
+    function aramaYap(val) {
+      aramaMetni = val;
+      const temizleBtn = document.getElementById('arama-temizle');
+      if (val) temizleBtn.classList.remove('hidden');
+      else temizleBtn.classList.add('hidden');
+      gorunenLimit = 24;
+      filtreUygula();
+    }
+
+    function aramaTemizle() {
+      document.getElementById('arama-input').value = '';
+      aramaYap('');
+    }
+
+    function kategoriFiltrele(kat) {
+      seciliKategori = kat;
+      gorunenLimit = 24;
+      ['tumu', 'kelimeler', 'deyimler', 'atasozleri', 'favoriler'].forEach(c => {
+        const btn = document.getElementById('filtre-btn-' + c);
+        if (c === kat) {
+          btn.className = "rounded-full px-3.5 py-1 text-xs font-semibold bg-[#2D6A4F] text-[#FAF8F3] dark:bg-[#3E8E6B] dark:text-[#0F1712] transition-all";
+        } else {
+          btn.className = "rounded-full px-3.5 py-1 text-xs font-medium border border-[#E3DDCF] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all";
+        }
+      });
+      filtreUygula();
+    }
+
+    function donemFiltrele(donem) {
+      seciliDonem = donem;
+      gorunenLimit = 24;
+      const butonlar = document.querySelectorAll('.donem-btn');
+      butonlar.forEach(b => {
+        if (b.getAttribute('data-donem') === donem) {
+          b.className = "donem-btn rounded-full px-3 py-1 text-xs font-medium bg-[#1E3B2E] text-[#FAF8F3] dark:bg-[#74C69D] dark:text-[#0F1712] shadow-sm transition-all";
+        } else {
+          b.className = "donem-btn rounded-full px-3 py-1 text-xs font-medium border border-[#DCD5C6] bg-[#FAF8F3] text-[#4E6357] hover:bg-[#F3EFE6] dark:border-[#27382D] dark:bg-[#17231C] dark:text-[#A7B9AF] transition-all";
+        }
+      });
+      filtreUygula();
+    }
+
+    function filtreleriSifirla() {
+      aramaTemizle();
+      kategoriFiltrele('tumu');
+      donemFiltrele('Tüm Dönemler');
+    }
+
+    function favoriTetikle(id) {
+      if (favoriler.includes(id)) {
+        favoriler = favoriler.filter(f => f !== id);
+      } else {
+        favoriler.push(id);
+      }
+      try {
+        localStorage.setItem('kadim_favoriler', JSON.stringify(favoriler));
+      } catch(e) {}
+      document.getElementById('sayac-favoriler').textContent = favoriler.length;
+      kartlariListele();
+    }
+
+    // MODAL İŞLEMLERİ
+    function detayAc(k) {
+      aktifDetayKelime = k;
+      document.getElementById('modal-kelime').textContent = k.kelime;
+      document.getElementById('modal-telaffuz').textContent = k.telaffuz ? `[${k.telaffuz}]` : '';
+      document.getElementById('modal-turu').textContent = k.turu;
+      document.getElementById('modal-koken').textContent = k.koken;
+      
+      const donemWrap = document.getElementById('modal-donem-wrap');
+      if (k.donem) {
+        donemWrap.classList.remove('hidden');
+        document.getElementById('modal-donem').textContent = k.donem;
+      } else {
+        donemWrap.classList.add('hidden');
+      }
+
+      document.getElementById('modal-anlam').textContent = k.anlam;
+      const ekbilgiEl = document.getElementById('modal-ekbilgi');
+      if (k.ekBilgi) {
+        ekbilgiEl.textContent = 'Açıklama: ' + k.ekBilgi;
+        ekbilgiEl.classList.remove('hidden');
+      } else {
+        ekbilgiEl.classList.add('hidden');
+      }
+      document.getElementById('modal-ornek').textContent = `"${k.ornekCumle}"`;
+
+      document.getElementById('detay-modal').classList.remove('hidden');
+    }
+
+    function detayKapat() {
+      document.getElementById('detay-modal').classList.add('hidden');
+    }
+
+    function modalKelimesiniSeslendir() {
+      if (aktifDetayKelime) {
+        seslendir(`${aktifDetayKelime.kelime}. Anlamı: ${aktifDetayKelime.anlam}. Örnek: ${aktifDetayKelime.ornekCumle}`);
+      }
+    }
+
+    function modalKopyala() {
+      if (aktifDetayKelime) {
+        navigator.clipboard.writeText(`${aktifDetayKelime.kelime}: ${aktifDetayKelime.anlam}\nÖrnek: "${aktifDetayKelime.ornekCumle}"`);
+        alert("Kelime ve anlamı panoya kopyalandı.");
+      }
+    }
+
+    function beniSasirt() {
+      const rastgele = KELIMELER[Math.floor(Math.random() * KELIMELER.length)];
+      detayAc(rastgele);
+    }
+
+    function gununKelimesiniSeslendir() {
+      seslendir(`${GUNUN_KELIMESI.kelime}. Anlamı: ${GUNUN_KELIMESI.anlam}. Örnek: ${GUNUN_KELIMESI.ornekCumle}`);
+    }
+
+    // ==========================================
+    // 2. KADİM KELİME AVI (WORDLE TARZI 5 HARF)
+    // ==========================================
+    let wordleHedef = null;
+    let wordleSatir = 0;
+    let wordleSutun = 0;
+    let wordleGrid = Array(6).fill('').map(() => Array(5).fill(''));
+    let wordleOyunBitti = false;
+
+    const KLAVYE_S1 = ['E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'Ğ', 'Ü'];
+    const KLAVYE_S2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ş', 'İ'];
+    const KLAVYE_S3 = ['GİRİŞ', 'Z', 'C', 'V', 'B', 'N', 'M', 'Ö', 'Ç', '⌫'];
+
+    function wordleBaslat() {
+      wordleHedef = WORDLE_HAVUZU[Math.floor(Math.random() * WORDLE_HAVUZU.length)];
+      wordleSatir = 0;
+      wordleSutun = 0;
+      wordleGrid = Array(6).fill('').map(() => Array(5).fill(''));
+      wordleOyunBitti = false;
+
+      document.getElementById('wordle-ipucu-kutusu').classList.add('hidden');
+      document.getElementById('wordle-sonuc-kart').classList.add('hidden');
+      document.getElementById('wordle-deneme-bilgi').textContent = "Deneme 1 / 6";
+
+      // Grid HTML Oluştur
+      const gridEl = document.getElementById('wordle-grid');
+      gridEl.innerHTML = '';
+      for (let r = 0; r < 6; r++) {
+        const rowDiv = document.createElement('div');
+        rowDiv.className = "grid grid-cols-5 gap-2";
+        for (let c = 0; c < 5; c++) {
+          const tile = document.createElement('div');
+          tile.id = `tile-${r}-${c}`;
+          tile.className = "wordle-tile h-12 sm:h-14 border-2 border-[#D5CEBF] bg-[#FAF8F3] text-[#162D23] dark:border-[#2C3B31] dark:bg-[#16221A] dark:text-[#E8F1EC]";
+          rowDiv.appendChild(tile);
+        }
+        gridEl.appendChild(rowDiv);
+      }
+
+      // Klavye HTML Oluştur
+      klavyeCiz();
+    }
+
+    function klavyeCiz() {
+      const ciz = (satirId, harfler) => {
+        const container = document.getElementById(satirId);
+        container.innerHTML = '';
+        harfler.forEach(h => {
+          const btn = document.createElement('button');
+          btn.id = `key-${h}`;
+          btn.setAttribute('data-key', h);
+          const isSpecial = h === 'GİRİŞ' || h === '⌫';
+          btn.className = `${isSpecial ? 'px-2.5 sm:px-3 text-xs' : 'w-8 sm:w-10 text-xs sm:text-sm'} h-10 sm:h-11 rounded font-bold border border-[#D5CEBF] bg-[#F4EFE5] text-[#24352D] hover:bg-[#EAE4D7] active:scale-95 transition-all dark:border-[#2C3B31] dark:bg-[#1C2820] dark:text-[#E8F1EC] dark:hover:bg-[#25352C]`;
+          btn.textContent = h;
+          btn.onclick = () => wordleHarfTiklandi(h);
+          container.appendChild(btn);
+        });
+      };
+      ciz('klavye-satir-1', KLAVYE_S1);
+      ciz('klavye-satir-2', KLAVYE_S2);
+      ciz('klavye-satir-3', KLAVYE_S3);
+    }
+
+    function wordleHarfTiklandi(harf) {
+      if (wordleOyunBitti) return;
+
+      if (harf === 'GİRİŞ') {
+        wordleTahminKontrol();
+      } else if (harf === '⌫') {
+        if (wordleSutun > 0) {
+          wordleSutun--;
+          wordleGrid[wordleSatir][wordleSutun] = '';
+          const tile = document.getElementById(`tile-${wordleSatir}-${wordleSutun}`);
+          tile.textContent = '';
+          tile.classList.remove('border-[#2D6A4F]', 'scale-105');
+        }
+      } else {
+        if (wordleSutun < 5) {
+          wordleGrid[wordleSatir][wordleSutun] = harf;
+          const tile = document.getElementById(`tile-${wordleSatir}-${wordleSutun}`);
+          tile.textContent = harf;
+          tile.classList.add('border-[#2D6A4F]');
+          wordleSutun++;
+        }
+      }
+    }
+
+    function wordleTahminKontrol() {
+      if (wordleSutun < 5) {
+        alert("Lütfen 5 harfi tamamlayın.");
+        return;
+      }
+
+      const tahmin = wordleGrid[wordleSatir].join('');
+      const hedef = wordleHedef.kelime;
+      const durumlar = Array(5).fill('absent');
+      const hedefKalan = hedef.split('');
+
+      // 1. Geçiş: Tam doğru (Yeşil)
+      for (let i = 0; i < 5; i++) {
+        if (tahmin[i] === hedef[i]) {
+          durumlar[i] = 'correct';
+          hedefKalan[i] = null;
+        }
+      }
+
+      // 2. Geçiş: Yanlış yer (Kehribar/Sarı)
+      for (let i = 0; i < 5; i++) {
+        if (durumlar[i] !== 'correct') {
+          const idx = hedefKalan.indexOf(tahmin[i]);
+          if (idx !== -1) {
+            durumlar[i] = 'present';
+            hedefKalan[idx] = null;
+          }
+        }
+      }
+
+      // Kutuları renklendir
+      for (let i = 0; i < 5; i++) {
+        const tile = document.getElementById(`tile-${wordleSatir}-${i}`);
+        const harf = tahmin[i];
+        const d = durumlar[i];
+
+        if (d === 'correct') {
+          tile.className = "wordle-tile h-12 sm:h-14 bg-[#2D6A4F] text-[#FAF8F3] border-2 border-[#2D6A4F] shadow-sm";
+          klavyeRengiGuncelle(harf, 'correct');
+        } else if (d === 'present') {
+          tile.className = "wordle-tile h-12 sm:h-14 bg-[#D97706] text-[#FAF8F3] border-2 border-[#D97706] shadow-sm";
+          klavyeRengiGuncelle(harf, 'present');
+        } else {
+          tile.className = "wordle-tile h-12 sm:h-14 bg-[#4B5563] text-[#FAF8F3] border-2 border-[#4B5563] shadow-sm";
+          klavyeRengiGuncelle(harf, 'absent');
+        }
+      }
+
+      // Kazanma Kontrolü
+      if (tahmin === hedef) {
+        wordleOyunBitti = true;
+        wordleBittiGoster(true);
+        return;
+      }
+
+      wordleSatir++;
+      wordleSutun = 0;
+
+      if (wordleSatir === 6) {
+        wordleOyunBitti = true;
+        wordleBittiGoster(false);
+      } else {
+        document.getElementById('wordle-deneme-bilgi').textContent = `Deneme ${wordleSatir + 1} / 6`;
+      }
+    }
+
+    function klavyeRengiGuncelle(harf, durum) {
+      const btn = document.getElementById(`key-${harf}`);
+      if (!btn) return;
+      if (btn.classList.contains('bg-[#2D6A4F]')) return; // Zaten yeşilse değiştirme
+
+      if (durum === 'correct') {
+        btn.className = "w-8 sm:w-10 h-10 sm:h-11 rounded font-bold text-xs sm:text-sm bg-[#2D6A4F] text-white border border-[#2D6A4F]";
+      } else if (durum === 'present' && !btn.classList.contains('bg-[#2D6A4F]')) {
+        btn.className = "w-8 sm:w-10 h-10 sm:h-11 rounded font-bold text-xs sm:text-sm bg-[#D97706] text-white border border-[#D97706]";
+      } else if (durum === 'absent' && !btn.classList.contains('bg-[#2D6A4F]') && !btn.classList.contains('bg-[#D97706]')) {
+        btn.className = "w-8 sm:w-10 h-10 sm:h-11 rounded font-bold text-xs sm:text-sm bg-[#4B5563] text-white border border-[#4B5563] opacity-60";
+      }
+    }
+
+    function wordleIpucuVer() {
+      const kutu = document.getElementById('wordle-ipucu-kutusu');
+      document.getElementById('wordle-ipucu-donem').textContent = `Dönem: ${wordleHedef.donem}`;
+      document.getElementById('wordle-ipucu-metin').textContent = `İpucu (Anlam Özeti): ${wordleHedef.anlam}`;
+      kutu.classList.toggle('hidden');
+    }
+
+    function wordleBittiGoster(kazandiMi) {
+      const kart = document.getElementById('wordle-sonuc-kart');
+      const ikon = document.getElementById('wordle-sonuc-ikon');
+      const baslik = document.getElementById('wordle-sonuc-baslik');
+      const mesaj = document.getElementById('wordle-sonuc-mesaj');
+
+      if (kazandiMi) {
+        ikon.textContent = '🎉';
+        baslik.textContent = 'Mükemmel! Tebrik Ederiz';
+        mesaj.textContent = `${wordleSatir + 1}. denemede kadim kelimeyi başarıyla keşfettiniz!`;
+      } else {
+        ikon.textContent = '📜';
+        baslik.textContent = 'Bir Dahaki Sefere!';
+        mesaj.textContent = '6 denemeniz tamamlandı. Aranan kadim kelime aşağıda açıklanmıştır:';
+      }
+
+      document.getElementById('wordle-kelime-reveal').textContent = wordleHedef.orijinal;
+      document.getElementById('wordle-donem-reveal').textContent = wordleHedef.donem;
+      document.getElementById('wordle-anlam-reveal').textContent = wordleHedef.anlam;
+      document.getElementById('wordle-ornek-reveal').textContent = `"${wordleHedef.ornekCumle}"`;
+
+      kart.classList.remove('hidden');
+    }
+
+    function wordleKelimesiniSeslendir() {
+      if (wordleHedef) {
+        seslendir(`${wordleHedef.orijinal}. Anlamı: ${wordleHedef.anlam}`);
+      }
+    }
+
+    // Klavye Tuş Dinleyicisi
+    window.addEventListener('keydown', (e) => {
+      if (aktifSekme !== 'wordle') return;
+      if (e.key === 'Enter') {
+        wordleHarfTiklandi('GİRİŞ');
+      } else if (e.key === 'Backspace') {
+        wordleHarfTiklandi('⌫');
+      } else {
+        const trKey = e.key.toLocaleUpperCase('tr-TR');
+        if (/^[A-ZĞÜŞİÖÇI]$/.test(trKey)) {
+          wordleHarfTiklandi(trKey);
+        }
+      }
+    });
+
+    // ==========================================
+    // 3. KELİME TESTİ (MİNİ OYUN)
+    // ==========================================
+    let testSorulari = [];
+    let aktifSoruIdx = 0;
+    let dogruPuan = 0;
+    let yanlisPuan = 0;
+    let soruCevaplandi = false;
+
+    function testiBaslat() {
+      document.getElementById('test-baslangic').classList.add('hidden');
+      document.getElementById('test-sonuc-alani').classList.add('hidden');
+      document.getElementById('test-aktif-alani').classList.remove('hidden');
+
+      // Rastgele 10 soru üret
+      const karisik = [...KELIMELER].sort(() => Math.random() - 0.5);
+      const secilenler = karisik.slice(0, 10);
+
+      testSorulari = secilenler.map(soruK => {
+        const yanlislar = KELIMELER.filter(k => k.id !== soruK.id)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(k => k.anlam);
+
+        const secenekler = [...yanlislar, soruK.anlam].sort(() => Math.random() - 0.5);
+
+        return {
+          kelime: soruK,
+          dogruCevap: soruK.anlam,
+          secenekler
+        };
+      });
+
+      aktifSoruIdx = 0;
+      dogruPuan = 0;
+      yanlisPuan = 0;
+      testSorusunuYukle();
+    }
+
+    function testSorusunuYukle() {
+      soruCevaplandi = false;
+      const soru = testSorulari[aktifSoruIdx];
+      document.getElementById('test-soru-sayac').textContent = `Soru ${aktifSoruIdx + 1} / 10`;
+      document.getElementById('test-dogru-sayac').textContent = dogruPuan;
+      document.getElementById('test-yanlis-sayac').textContent = yanlisPuan;
+      document.getElementById('test-ilerleme-cubugu').style.width = ((aktifSoruIdx + 1) / 10 * 100) + '%';
+
+      document.getElementById('test-soru-kelime').textContent = soru.kelime.kelime;
+      document.getElementById('test-soru-telaffuz').textContent = `[${soru.kelime.telaffuz || ''}] · ${soru.kelime.turu}`;
+      document.getElementById('test-alt-cubuk').classList.add('hidden');
+
+      const seceneklerDiv = document.getElementById('test-secenekler');
+      seceneklerDiv.innerHTML = '';
+
+      soru.secenekler.forEach((sec, idx) => {
+        const harf = ['A', 'B', 'C', 'D'][idx];
+        const btn = document.createElement('button');
+        btn.className = "flex w-full items-start gap-3 rounded-xl border border-[#E0D9CB] bg-[#F7F4EC] p-4 text-left text-sm leading-relaxed text-[#24352D] hover:border-[#2D6A4F] hover:bg-[#EFEAE0] transition-all dark:border-[#2B3B30] dark:bg-[#1B271F] dark:text-[#D5E2DA]";
+        btn.innerHTML = `<span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-current font-mono text-xs font-bold">${harf}</span><span>${sec}</span>`;
+        btn.onclick = () => testCevapVer(sec, btn);
+        seceneklerDiv.appendChild(btn);
+      });
+    }
+
+    function testCevapVer(secilen, btnEl) {
+      if (soruCevaplandi) return;
+      soruCevaplandi = true;
+      const soru = testSorulari[aktifSoruIdx];
+      const dogruMu = secilen === soru.dogruCevap;
+
+      const butonlar = document.getElementById('test-secenekler').querySelectorAll('button');
+      butonlar.forEach(btn => {
+        btn.disabled = true;
+        const metin = btn.querySelector('span:last-child').textContent;
+        if (metin === soru.dogruCevap) {
+          btn.className = "flex w-full items-start gap-3 rounded-xl border border-[#2D6A4F] bg-[#E8F5ED] p-4 text-left text-sm font-semibold text-[#14472F] dark:border-[#3E8E6B] dark:bg-[#1A3324] dark:text-[#A6E3C0]";
+        } else if (metin === secilen && !dogruMu) {
+          btn.className = "flex w-full items-start gap-3 rounded-xl border border-[#B94A32] bg-[#FDF0ED] p-4 text-left text-sm text-[#7A2818] dark:border-[#E07A5F] dark:bg-[#341C17] dark:text-[#F3B0A0]";
+        } else {
+          btn.classList.add('opacity-40');
+        }
+      });
+
+      const geriBildirim = document.getElementById('test-geri-bildirim');
+      if (dogruMu) {
+        dogruPuan++;
+        geriBildirim.textContent = "✓ Doğru cevap! Harika.";
+        geriBildirim.className = "text-xs font-semibold text-[#2D6A4F] dark:text-[#74C69D]";
+      } else {
+        yanlisPuan++;
+        geriBildirim.textContent = "✗ Yanlış! Doğru cevap yeşil renkle vurgulandı.";
+        geriBildirim.className = "text-xs font-semibold text-[#B94A32] dark:text-[#E07A5F]";
+      }
+
+      document.getElementById('test-dogru-sayac').textContent = dogruPuan;
+      document.getElementById('test-yanlis-sayac').textContent = yanlisPuan;
+      document.getElementById('test-btn-metin').textContent = (aktifSoruIdx + 1 === 10) ? 'Sonuçları Gör' : 'Sonraki Soru';
+      document.getElementById('test-alt-cubuk').classList.remove('hidden');
+    }
+
+    function sonrakiTestSorusu() {
+      if (aktifSoruIdx + 1 < 10) {
+        aktifSoruIdx++;
+        testSorusunuYukle();
+      } else {
+        testSonucunuGoster();
+      }
+    }
+
+    function testSonucunuGoster() {
+      document.getElementById('test-aktif-alani').classList.add('hidden');
+      document.getElementById('test-sonuc-alani').classList.remove('hidden');
+      const basari = Math.round((dogruPuan / 10) * 100);
+      document.getElementById('sonuc-dogru').textContent = dogruPuan;
+      document.getElementById('sonuc-yanlis').textContent = yanlisPuan;
+      document.getElementById('sonuc-puan').textContent = '%' + basari;
+      const aciklama = document.getElementById('test-sonuc-aciklama');
+      if (basari === 100) {
+        aciklama.textContent = "Kusursuz başarı! Kadim kelimelerimizin derin manalarına ve Türkçemizin zenginliğine bütünüyle hâkimsiniz.";
+      } else if (basari >= 70) {
+        aciklama.textContent = "Tebrikler! Dilimizin zenginliklerine olan ilginiz ve kelime dağarcığınız takdire şayan.";
+      } else {
+        aciklama.textContent = "Güzel bir gayret! Sözlükteki kadim kelimeleri dinleyerek bilginizi daha da pekiştirebilirsiniz.";
+      }
+    }
+
+    // AYDINLIK / KARANLIK MOD
+    function karanlikModDegistir() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      const icon = document.getElementById('theme-icon');
+      if (html.classList.contains('dark')) {
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+      } else {
+        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+      }
+    }
+
+    // BAŞLANGIÇ YÜKLEMESİ
+    window.addEventListener('DOMContentLoaded', () => {
+      // Günün kelimesi
+      document.getElementById('gk-baslik').textContent = GUNUN_KELIMESI.kelime;
+      document.getElementById('gk-telaffuz').textContent = '[' + (GUNUN_KELIMESI.telaffuz || '') + ']';
+      document.getElementById('gk-meta').textContent = GUNUN_KELIMESI.turu + ' · ' + GUNUN_KELIMESI.koken + (GUNUN_KELIMESI.donem ? ' · ' + GUNUN_KELIMESI.donem : '');
+      document.getElementById('gk-anlam').textContent = GUNUN_KELIMESI.anlam;
+      document.getElementById('gk-ornek').textContent = '"' + GUNUN_KELIMESI.ornekCumle + '"';
+      
+      document.getElementById('sayac-tumu').textContent = KELIMELER.length;
+      document.getElementById('sayac-favoriler').textContent = favoriler.length;
+
+      kartlariListele();
+    });
+  </script>
+</body>
+</html>

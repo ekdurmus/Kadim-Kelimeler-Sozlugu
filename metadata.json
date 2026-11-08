@@ -1,0 +1,6 @@
+{
+  "name": "Kadim Kelimeler Sözlüğü",
+  "description": "Dilimizin Zenginlikleri projesi kapsamında Tevfik Serdar Anadolu Lisesi Kadim Kelimeler Sözlüğü ve Kelime Testi uygulaması.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
